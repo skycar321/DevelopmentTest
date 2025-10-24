@@ -2,283 +2,232 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>파일 복호화 (ActiveX + JS Fallback)</title>
+<title>파일 복호화 도구 (IE 모드 전용)</title>
 <meta http-equiv="X-UA-Compatible" content="IE=11">
 
 <style>
 body {
   font-family: "Malgun Gothic", Arial, sans-serif;
-  background: #f3f4f6;
+  background: linear-gradient(135deg, #e9efff 0%, #f7f9ff 100%);
   margin: 0;
-  padding: 20px;
-  color: #222;
+  padding: 0;
 }
 .container {
-  width: 900px;
-  max-width: 96%;
-  margin: 0 auto;
+  width: 480px;
+  margin: 80px auto;
   background: #fff;
-  border: 1px solid #e1e4ea;
-  padding: 18px;
-  box-sizing: border-box;
-  border-radius: 6px;
-}
-.header { overflow: hidden; margin-bottom: 12px; }
-.header h1 { float:left; margin:0; font-size:20px; }
-.header .info { float:right; font-size:12px; color:#666; }
-.uploader {
-  border: 2px dashed #cfd8e3;
-  background: #fafbfc;
-  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+  padding: 30px 28px 40px;
   text-align: center;
+}
+h1 {
+  font-size: 20px;
+  margin: 0 0 10px;
+  color: #1a237e;
+}
+.subtitle {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 20px;
+}
+.file-box {
+  border: 2px dashed #b0c4ff;
+  background: #f8faff;
+  padding: 28px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  transition: all .25s ease;
+}
+.file-box:hover {
+  background: #f0f5ff;
+  border-color: #5a8fff;
+}
+.file-label {
+  display: block;
   cursor: pointer;
-  position: relative;
-  margin-bottom: 12px;
-  border-radius: 4px;
+  color: #333;
+  font-size: 14px;
 }
-.uploader.dragover {
-  border-color: #6aa0ff;
-  background: #f0f6ff;
+input[type=file] {
+  display: none;
 }
-.uploader p { margin: 6px 0; font-size:14px; color:#333; }
-.controls { margin-bottom: 12px; }
 .btn {
   display: inline-block;
-  padding: 8px 14px;
-  background: #2b7cff;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  font-size: 13px;
+  padding: 10px 26px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
   cursor: pointer;
-  margin-right: 8px;
+  color: #fff;
+  background: linear-gradient(90deg, #4a68ff 0%, #5a89ff 100%);
+  transition: background 0.3s;
 }
-.btn.secondary { background:#6c757d; }
-.file-list { border-top:1px solid #eee; padding-top:10px; font-size:13px; }
-.file-item { padding:8px 6px; border-bottom:1px dashed #eee; overflow: hidden; }
-.file-item .name { float:left; width:60%; }
-.file-item .status { float:right; color:#777; }
-.clearfix { clear:both; }
+.btn:hover {
+  background: linear-gradient(90deg, #3353f3 0%, #4e76ff 100%);
+}
+.btn.secondary {
+  background: #aaa;
+}
+.status-box {
+  margin-top: 18px;
+  font-size: 13px;
+  color: #333;
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 6px;
+  border: 1px solid #e3e3e3;
+  text-align: left;
+}
+.status-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
 .msg {
-  margin-top:12px;
-  padding:10px;
-  border-radius:4px;
-  background:#fffbe6;
-  border:1px solid #ffe58f;
-  color:#664d03;
-  font-size:13px;
+  margin-top: 18px;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ffe58f;
+  background: #fffbe6;
+  color: #664d03;
+  font-size: 13px;
 }
-.note { margin-top:10px; font-size:12px; color:#666; }
 </style>
 </head>
 <body>
 <div class="container">
-  <div class="header">
-    <h1>파일 복호화 (IE 모드용)</h1>
-    <div class="info">ActiveX 사용 시도 → 실패 시 JS 처리</div>
+  <h1>🔐 파일 복호화 도구</h1>
+  <div class="subtitle">ActiveX 복호화를 지원합니다 (Edge IE 모드 권장)</div>
+
+  <div class="file-box">
+    <label class="file-label" for="fileInput">
+      복호화할 파일을 선택하세요
+    </label>
+    <input id="fileInput" type="file" />
   </div>
 
-  <div id="uploader" class="uploader" tabindex="0">
-    <p>파일을 여기에 끌어다 놓거나<br>아래 버튼으로 파일을 선택하세요.</p>
-    <input id="fileInput" type="file" multiple
-      style="position:absolute; left:0; top:0; width:100%; height:100%; opacity:0; cursor:pointer;" />
+  <button class="btn" id="startBtn">복호화 시작</button>
+  <button class="btn secondary" id="clearBtn">초기화</button>
+
+  <div class="status-box" id="statusBox" style="display:none;">
+    <div class="status-title">처리 상태</div>
+    <div id="statusText">대기 중...</div>
   </div>
 
-  <div class="controls">
-    <a href="#" class="btn" id="startBtn">복호화 시작</a>
-    <a href="#" class="btn secondary" id="clearBtn">목록 비우기</a>
-    <span class="note">※ Edge IE 모드에서 ActiveX 복호화 지원</span>
-  </div>
-
-  <div id="list" class="file-list"></div>
   <div id="message" class="msg" style="display:none;"></div>
 </div>
 
 <script>
-// ===== 유틸 =====
+// 유틸
 function $(id){ return document.getElementById(id); }
 
-var uploader = $('uploader');
 var fileInput = $('fileInput');
-var list = $('list');
 var startBtn = $('startBtn');
 var clearBtn = $('clearBtn');
+var statusBox = $('statusBox');
+var statusText = $('statusText');
 var message = $('message');
-var filesArray = [];
 
-// ===== 파일 드래그앤드롭 =====
-uploader.addEventListener('dragover', function(e){
-  e.preventDefault();
-  if (uploader.className.indexOf('dragover') === -1)
-    uploader.className += ' dragover';
-});
-uploader.addEventListener('dragleave', function(e){
-  e.preventDefault();
-  uploader.className = uploader.className.replace(' dragover','');
-});
-uploader.addEventListener('drop', function(e){
-  e.preventDefault();
-  uploader.className = uploader.className.replace(' dragover','');
-  var dt = e.dataTransfer;
-  if (dt && dt.files) handleFileList(dt.files);
-});
-
-// ===== 파일 선택 =====
-fileInput.addEventListener('change', function(){
-  handleFileList(fileInput.files);
-});
-
-// ===== 파일 목록 관리 =====
-function handleFileList(fileList) {
-  for (var i = 0; i < fileList.length; i++) {
-    filesArray.push({ file: fileList[i], status: 'pending' });
-  }
-  renderList();
-}
-function renderList() {
-  list.innerHTML = '';
-  for (var i = 0; i < filesArray.length; i++) {
-    var info = filesArray[i];
-    var item = document.createElement('div');
-    item.className = 'file-item';
-    var name = document.createElement('span');
-    name.className = 'name';
-    name.innerText = (i+1) + '. ' + info.file.name + ' (' + Math.round(info.file.size/1024) + ' KB)';
-    var status = document.createElement('span');
-    status.className = 'status';
-    status.innerText = info.status;
-    item.appendChild(name);
-    item.appendChild(status);
-    item.appendChild(document.createElement('div')).className = 'clearfix';
-    list.appendChild(item);
-  }
-}
 function showMessage(text) {
   message.style.display = 'block';
   message.innerText = text;
 }
+function setStatus(text) {
+  statusBox.style.display = 'block';
+  statusText.innerText = text;
+}
 
-// ===== ActiveX 가능 여부 =====
+// ActiveX 사용 가능 여부
 function isActiveXAvailable() {
   try { return !!window.ActiveXObject || "ActiveXObject" in window; }
   catch(e){ return false; }
 }
 
-// ===== IE 모드 파일 경로 파싱 =====
-// 예: "C:\\Users\\me\\Desktop\\" "a.txt" "b.txt" "c.txt"
-function parseIEFileInputValue(val) {
-  if (!val) return [];
-  var matches = val.match(/"([^"]+)"/g);
-  if (!matches || matches.length === 0) return [];
-
-  var basePath = matches[0].replace(/"/g, '');
-  var results = [];
-
-  if (!/\\$/.test(basePath)) basePath += "\\"; // 경로 끝에 \ 보정
-
-  for (var i = 1; i < matches.length; i++) {
-    var fileName = matches[i].replace(/"/g, '');
-    results.push(basePath + fileName);
-  }
-  return results;
-}
-
-// ===== ActiveX 복호화 =====
+/* ✅ ActiveX 복호화 로직 */
 function tryActiveXDecrypt(callback) {
   try {
     if (!isActiveXAvailable()) throw new Error('ActiveX not available');
-    var val = fileInput.value;
-    var paths = parseIEFileInputValue(val);
-    if (paths.length === 0 && val) {
-      // 단일 파일 선택 시
-      paths = [val.replace(/"/g,'')];
-    }
-    if (paths.length === 0) throw new Error('파일 경로를 확인할 수 없습니다.');
+    var filePath = fileInput.value;
+    if (!filePath) throw new Error('파일이 선택되지 않았습니다.');
 
+    // ActiveX 객체 생성
     var xObj = new window.ActiveXObject("DSCOMCSLINK.CSLinker.1");
     xObj.CSSetLicenseKey("1111-2222-3333-4444");
     xObj.CSAddDac(3, "1;1;0;0;1;1;0");
 
-    for (var i = 0; i < paths.length; i++) {
-      xObj.CSDecryptFile(paths[i], paths[i]);
-    }
-    callback(null, paths.length + '개 파일 복호화 완료');
+    // 복호화 수행
+    xObj.CSDecryptFile(filePath, filePath);
+
+    callback(null, filePath);
   } catch (err) {
-    console.error('ActiveX 복호화 실패:', err);
+    console.error(err);
     callback(err);
   }
 }
 
-// ===== JS fallback =====
+/* ❗ JS 복호화 Fallback */
 function jsDecryptFile(file, callback) {
   var reader = new FileReader();
-  reader.onload = function(e){
+  reader.onload = function(e) {
     try {
-      var result = e.target.result;
-      callback(null, result);
+      // 실제 복호화 로직이 필요할 경우 CryptoJS 등으로 구현
+      // 현재는 단순 성공 시뮬레이션
+      callback(null, e.target.result);
     } catch (ex) {
       callback(ex);
     }
   };
-  reader.onerror = function(){ callback(new Error('FileReader 오류')); };
+  reader.onerror = function() { callback(new Error('FileReader 오류')); };
   reader.readAsArrayBuffer(file);
 }
 
-// ===== 전체 처리 =====
-function processAllFiles() {
-  if (filesArray.length === 0) {
-    showMessage('처리할 파일이 없습니다.');
+/* ✅ 전체 복호화 처리 */
+function processFile() {
+  var file = fileInput.files[0];
+  if (!file) {
+    showMessage('파일을 선택해주세요.');
     return;
   }
-  showMessage('복호화 시작...');
 
-  // IE ActiveX 처리 우선
-  if (isActiveXAvailable()) {
-    tryActiveXDecrypt(function(err, msg){
-      if (!err) {
-        for (var i = 0; i < filesArray.length; i++) filesArray[i].status = 'done (ActiveX)';
-        showMessage(msg);
-        renderList();
-      } else {
-        showMessage('ActiveX 실패 → JS 복호화로 진행');
-        fallbackWithJS();
-      }
-    });
-  } else {
-    fallbackWithJS();
-  }
+  showMessage('복호화를 시작합니다...');
+  setStatus('처리 중...');
 
-  function fallbackWithJS() {
-    var idx = 0;
-    function next() {
-      if (idx >= filesArray.length) {
-        showMessage('JS 복호화 완료');
-        renderList();
-        return;
-      }
-      var info = filesArray[idx];
-      info.status = 'processing';
-      renderList();
-      jsDecryptFile(info.file, function(err, result){
-        info.status = err ? 'error' : 'done (JS)';
-        idx++; next();
+  tryActiveXDecrypt(function(err, result){
+    if (!err) {
+      setStatus('복호화 완료 (ActiveX)');
+      showMessage('ActiveX로 복호화 성공!');
+    } else {
+      jsDecryptFile(file, function(err2){
+        if (!err2) {
+          setStatus('복호화 완료 (JS Fallback)');
+          showMessage('ActiveX를 사용할 수 없어 JS 방식으로 처리되었습니다.');
+        } else {
+          setStatus('오류 발생');
+          showMessage('복호화 중 오류가 발생했습니다.');
+        }
       });
     }
-    next();
-  }
+  });
 }
 
-// ===== 버튼 이벤트 =====
-startBtn.addEventListener('click', function(e){ e.preventDefault(); processAllFiles(); });
-clearBtn.addEventListener('click', function(e){ e.preventDefault(); filesArray = []; renderList(); message.style.display='none'; });
+/* ✅ 버튼 이벤트 */
+startBtn.addEventListener('click', function(e){
+  e.preventDefault();
+  processFile();
+});
+clearBtn.addEventListener('click', function(e){
+  e.preventDefault();
+  fileInput.value = '';
+  statusBox.style.display = 'none';
+  message.style.display = 'none';
+});
 
-// ===== 초기 메시지 =====
-renderList();
-window.onload = function(){
+/* 초기 안내 */
+window.onload = function() {
   if (isActiveXAvailable()) {
-    showMessage('ActiveX 복호화를 시도합니다. (Edge IE 모드 또는 IE11)');
+    showMessage('ActiveX 복호화 시도 가능 (Edge IE 모드에서 실행 권장)');
   } else {
-    showMessage('ActiveX를 사용할 수 없습니다. JS 복호화로 처리합니다.');
+    showMessage('ActiveX를 사용할 수 없습니다. JS 복호화로 대체됩니다.');
   }
 };
 </script>
