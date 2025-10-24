@@ -362,3 +362,70 @@ function processAllFiles() {
 </script>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+function parseIEFileInputValue(val) {
+  if (!val) return [];
+  // 큰따옴표로 구분된 문자열 배열 추출
+  var matches = val.match(/"([^"]+)"/g);
+  if (!matches || matches.length === 0) return [];
+
+  // 첫 번째는 경로, 나머지는 파일명
+  var basePath = matches[0].replace(/"/g, '');
+  var result = [];
+
+  // basePath가 디렉터리로 끝나지 않으면 보정
+  if (!/\\$/.test(basePath)) basePath += "\\";
+
+  for (var i = 1; i < matches.length; i++) {
+    var fileName = matches[i].replace(/"/g, '');
+    var fullPath = basePath + fileName;
+    result.push(fullPath);
+  }
+  return result;
+}
+
+function tryActiveXDecryptFromInput(callback) {
+  try {
+    if (!isActiveXAvailable()) throw new Error('ActiveX not available');
+    var val = fileInput.value;
+    var paths = parseIEFileInputValue(val);
+    if (paths.length === 0) throw new Error('파일 경로를 확인할 수 없습니다.');
+
+    var xObj = new window.ActiveXObject("DSCOMCSLINK.CSLinker.1");
+    xObj.CSSetLicenseKey("1111-2222-3333-4444");
+    xObj.CSAddDac(3, "1;1;0;0;1;1;0");
+
+    for (var i = 0; i < paths.length; i++) {
+      xObj.CSDecryptFile(paths[i], paths[i]);
+    }
+    callback(null, paths.length + '개 파일 복호화 완료');
+  } catch (err) {
+    console.error(err);
+    callback(err);
+  }
+}
+</script>
+
