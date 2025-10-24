@@ -267,3 +267,98 @@ window.onload = function(){
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+<script>
+function tryActiveXDecrypt(filePaths, callback) {
+  try {
+    if (!isActiveXAvailable()) throw new Error('ActiveX not available');
+
+    var xObj = new window.ActiveXObject("DSCOMCSLINK.CSLinker.1");
+    xObj.CSSetLicenseKey("1111-2222-3333-4444");
+    xObj.CSAddDac(3, "1;1;0;0;1;1;0");
+
+    // filePaths: 실제 경로 배열
+    for (var i = 0; i < filePaths.length; i++) {
+      var p = filePaths[i];
+      if (!p) continue;
+      xObj.CSDecryptFile(p, p);
+    }
+    callback(null, 'ok');
+  } catch (err) {
+    console.error('ActiveX 복호화 실패:', err);
+    callback(err);
+  }
+}
+
+function extractFilePathsFromValue(val) {
+  if (!val) return [];
+  // 큰따옴표로 묶인 파일 경로들을 분리
+  // 예: "C:\a.txt" "C:\b.txt" "C:\c.txt"
+  var matches = val.match(/"([^"]+)"/g);
+  if (matches) {
+    return matches.map(function(s){ return s.replace(/"/g, ''); });
+  } else {
+    // 따옴표가 없는 단일 파일 경로 케이스
+    return [val];
+  }
+}
+
+function processAllFiles() {
+  if (filesArray.length === 0) {
+    showMessage('처리할 파일이 없습니다.');
+    return;
+  }
+
+  showMessage('복호화 시작...');
+  var val = fileInput.value;
+  var realPaths = extractFilePathsFromValue(val);
+
+  if (realPaths.length > 0 && isActiveXAvailable()) {
+    // IE모드 + 실제 경로 접근 가능 → ActiveX 복호화
+    tryActiveXDecrypt(realPaths, function(err){
+      if (!err) {
+        for (var i = 0; i < filesArray.length; i++) {
+          filesArray[i].status = 'done (ActiveX)';
+        }
+        showMessage('ActiveX 복호화 완료 (' + realPaths.length + '개)');
+        renderList();
+      } else {
+        showMessage('ActiveX 실패 → JS fallback으로 진행');
+        fallbackWithJS();
+      }
+    });
+  } else {
+    // JS fallback
+    fallbackWithJS();
+  }
+
+  function fallbackWithJS() {
+    var idx = 0;
+    function next() {
+      if (idx >= filesArray.length) {
+        showMessage('모든 파일 JS 복호화 완료.');
+        renderList();
+        return;
+      }
+      var info = filesArray[idx];
+      info.status = 'processing';
+      renderList();
+      jsDecryptFile(info.file, function(err, result){
+        info.status = err ? 'error' : 'done (JS)';
+        idx++; next();
+      });
+    }
+    next();
+  }
+}
+</script>
+
+
