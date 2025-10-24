@@ -52,6 +52,13 @@ h1 {
 input[type=file] {
   display: none;
 }
+.file-name {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #444;
+  font-weight: 500;
+  word-break: break-all;
+}
 .btn {
   display: inline-block;
   padding: 10px 26px;
@@ -79,10 +86,19 @@ input[type=file] {
   border: 1px solid #e3e3e3;
   text-align: left;
 }
-.status-title {
-  font-weight: bold;
-  margin-bottom: 4px;
+.status-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
 }
+.status-label {
+  font-weight: bold;
+}
+.status-value.processing { color: #007bff; font-weight: bold; }
+.status-value.done { color: #28a745; font-weight: bold; }
+.status-value.error { color: #dc3545; font-weight: bold; }
+.status-value.wait { color: #6c757d; font-weight: bold; }
 .msg {
   margin-top: 18px;
   padding: 12px;
@@ -104,14 +120,17 @@ input[type=file] {
       복호화할 파일을 선택하세요
     </label>
     <input id="fileInput" type="file" />
+    <div id="fileName" class="file-name" style="display:none;"></div>
   </div>
 
   <button class="btn" id="startBtn">복호화 시작</button>
   <button class="btn secondary" id="clearBtn">초기화</button>
 
   <div class="status-box" id="statusBox" style="display:none;">
-    <div class="status-title">처리 상태</div>
-    <div id="statusText">대기 중...</div>
+    <div class="status-line">
+      <span class="status-label">파일 상태</span>
+      <span id="statusValue" class="status-value wait">대기 중</span>
+    </div>
   </div>
 
   <div id="message" class="msg" style="display:none;"></div>
@@ -122,20 +141,34 @@ input[type=file] {
 function $(id){ return document.getElementById(id); }
 
 var fileInput = $('fileInput');
+var fileName = $('fileName');
 var startBtn = $('startBtn');
 var clearBtn = $('clearBtn');
 var statusBox = $('statusBox');
-var statusText = $('statusText');
+var statusValue = $('statusValue');
 var message = $('message');
 
 function showMessage(text) {
   message.style.display = 'block';
   message.innerText = text;
 }
-function setStatus(text) {
+function setStatus(status, text) {
   statusBox.style.display = 'block';
-  statusText.innerText = text;
+  statusValue.className = 'status-value ' + status;
+  statusValue.innerText = text;
 }
+
+// 파일 선택 시 이름 표시
+fileInput.addEventListener('change', function() {
+  if (fileInput.files.length > 0) {
+    fileName.style.display = 'block';
+    fileName.innerText = '📄 ' + fileInput.files[0].name;
+    setStatus('wait', '대기 중');
+    showMessage('파일이 선택되었습니다.');
+  } else {
+    fileName.style.display = 'none';
+  }
+});
 
 // ActiveX 사용 가능 여부
 function isActiveXAvailable() {
@@ -150,14 +183,11 @@ function tryActiveXDecrypt(callback) {
     var filePath = fileInput.value;
     if (!filePath) throw new Error('파일이 선택되지 않았습니다.');
 
-    // ActiveX 객체 생성
     var xObj = new window.ActiveXObject("DSCOMCSLINK.CSLinker.1");
     xObj.CSSetLicenseKey("1111-2222-3333-4444");
     xObj.CSAddDac(3, "1;1;0;0;1;1;0");
 
-    // 복호화 수행
     xObj.CSDecryptFile(filePath, filePath);
-
     callback(null, filePath);
   } catch (err) {
     console.error(err);
@@ -165,13 +195,12 @@ function tryActiveXDecrypt(callback) {
   }
 }
 
-/* ❗ JS 복호화 Fallback */
+/* ❗ JS 복호화 (Fallback) */
 function jsDecryptFile(file, callback) {
   var reader = new FileReader();
   reader.onload = function(e) {
     try {
-      // 실제 복호화 로직이 필요할 경우 CryptoJS 등으로 구현
-      // 현재는 단순 성공 시뮬레이션
+      // 실제 복호화 로직 필요 시 CryptoJS 등 사용
       callback(null, e.target.result);
     } catch (ex) {
       callback(ex);
@@ -190,20 +219,20 @@ function processFile() {
   }
 
   showMessage('복호화를 시작합니다...');
-  setStatus('처리 중...');
+  setStatus('processing', '처리 중...');
 
   tryActiveXDecrypt(function(err, result){
     if (!err) {
-      setStatus('복호화 완료 (ActiveX)');
-      showMessage('ActiveX로 복호화 성공!');
+      setStatus('done', '복호화 완료 (ActiveX)');
+      showMessage('✅ ActiveX로 복호화 성공!');
     } else {
       jsDecryptFile(file, function(err2){
         if (!err2) {
-          setStatus('복호화 완료 (JS Fallback)');
-          showMessage('ActiveX를 사용할 수 없어 JS 방식으로 처리되었습니다.');
+          setStatus('done', '복호화 완료 (JS)');
+          showMessage('✅ ActiveX를 사용할 수 없어 JS 방식으로 처리되었습니다.');
         } else {
-          setStatus('오류 발생');
-          showMessage('복호화 중 오류가 발생했습니다.');
+          setStatus('error', '오류 발생');
+          showMessage('❌ 복호화 중 오류가 발생했습니다.');
         }
       });
     }
@@ -218,6 +247,7 @@ startBtn.addEventListener('click', function(e){
 clearBtn.addEventListener('click', function(e){
   e.preventDefault();
   fileInput.value = '';
+  fileName.style.display = 'none';
   statusBox.style.display = 'none';
   message.style.display = 'none';
 });
