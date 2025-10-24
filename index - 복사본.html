@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>Index - 복호화 열기</title>
+  <style>
+    body {
+      font-family: Arial, "Malgun Gothic", sans-serif;
+      padding: 30px;
+      background: #f6f7fb;
+    }
+    .card {
+      display: inline-block;
+      width: 220px;
+      height: 120px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+      padding: 16px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .card h3 {
+      margin: 12px 0 6px;
+      font-size: 18px;
+    }
+    .hint {
+      font-size: 12px;
+      color: #666;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>복호화 페이지 열기</h1>
+
+  <!-- 카드 클릭시 decrypt.html 새 창으로 열기 -->
+  <div class="card" id="openDecrypt">
+    <h3>복호화</h3>
+    <div class="hint">새창으로 decrypt.html이 열립니다.</div>
+  </div>
+
+<script>
+(function(){
+  var card = document.getElementById('openDecrypt');
+  card.addEventListener('click', function () {
+    // 1) 엣지 브라우저로 열기 위한 microsoft-edge 프로토콜
+    var url = 'http://localhost/decrypt.html'; // 서버에 올린 주소로 변경하세요.
+
+    // 엣지 프로토콜: microsoft-edge:<url>
+    var edgeHref = 'microsoft-edge:' + url;
+
+    // 2) 엣지 브라우저가 설치되어 있는지 확인하기
+    var isEdgeInstalled = false;
+    
+    // 간단한 방법으로 엣지 프로토콜을 사용할 수 있는지 확인
+    try {
+      var a = document.createElement('a');
+      a.href = edgeHref;
+      document.body.appendChild(a);
+      isEdgeInstalled = true; // 프로토콜로 엣지를 실행할 수 있으면 isEdgeInstalled가 true
+    } catch (e) {
+      // 엣지가 설치되지 않았거나 프로토콜 호출 실패 시
+      isEdgeInstalled = false;
+    }
+
+    if (isEdgeInstalled) {
+      // 엣지가 설치된 경우 microsoft-edge 프로토콜로 엣지에서 열기 시도
+      try {
+        a.click();  // 엣지 열기
+        document.body.removeChild(a);
+      } catch (e) {
+        // 실패하면 fallback으로 일반 새 창을 엽니다.
+        window.open(url, '_blank', 'noopener');
+      }
+    } else {
+      // 엣지가 설치되지 않은 경우 fallback: 크롬 등 다른 브라우저에서 새 창으로 열기
+      window.open(url, '_blank', 'noopener');
+    }
+
+    // 3) 일반 새 창 열기 (엣지가 없거나, 프로토콜이 실패했을 경우)
+    setTimeout(function(){
+      window.open(url, '_blank', 'noopener');
+    }, 700); // 700ms 후, 프로토콜로 열지 못했을 경우 새창으로 열기
+  });
+})();
+</script>
+</body>
+</html>

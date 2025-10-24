@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Decrypt - 복호화 (IE 모드용)</title>
+
+<!-- IE 호환 메타 -->
+<meta http-equiv="X-UA-Compatible" content="IE=11">
+
+<style>
+/* IE 친화적, 단순한 CSS (flex 대신 float / inline-block 등 사용) */
+body {
+  font-family: "Malgun Gothic", Arial, sans-serif;
+  background: #f3f4f6;
+  margin: 0;
+  padding: 20px;
+  color: #222;
+}
+
+.container {
+  width: 900px;
+  max-width: 96%;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #e1e4ea;
+  padding: 18px;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+.header {
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.header h1 { float:left; margin:0; font-size:20px; }
+.header .info { float:right; font-size:12px; color:#666; }
+
+.uploader {
+  border: 2px dashed #cfd8e3;
+  background: #fafbfc;
+  padding: 18px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 12px;
+  border-radius: 4px;
+}
+.uploader.dragover {
+  border-color: #6aa0ff;
+  background: #f0f6ff;
+}
+
+.uploader p { margin: 6px 0; font-size:14px; color:#333; }
+
+.controls { margin-bottom: 12px; }
+
+.btn {
+  display: inline-block;
+  padding: 8px 14px;
+  background: #2b7cff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  margin-right: 8px;
+}
+.btn.secondary { background:#6c757d; }
+
+.file-list { border-top:1px solid #eee; padding-top:10px; font-size:13px; }
+.file-item { padding:8px 6px; border-bottom:1px dashed #eee; overflow: hidden; }
+.file-item .name { float:left; width:60%; }
+.file-item .status { float:right; color:#777; }
+
+.note { margin-top:10px; font-size:12px; color:#666; }
+.clearfix { clear:both; }
+
+/* 간단한 메시지 박스 */
+.msg { margin-top:12px; padding:10px; border-radius:4px; background:#fffbe6; border:1px solid #ffe58f; color:#664d03; font-size:13px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>파일 복호화 (IE 모드용)</h1>
+    <div class="info">ActiveX 시도 후, 실패하면 JS 처리</div>
+  </div>
+
+  <div id="uploader" class="uploader" tabindex="0">
+    <p>파일을 여기에 끌어다 놓거나<br>아래 버튼으로 파일을 선택하세요.</p>
+    <input id="fileInput" type="file" multiple style="position:absolute; left:0; top:0; width:100%; height:100%; opacity:0; cursor:pointer;" />
+  </div>
+
+  <div class="controls">
+    <a href="#" class="btn" id="startBtn">복호화 시작</a>
+    <a href="#" class="btn secondary" id="clearBtn">목록 비우기</a>
+    <span class="note">지원: 다중 파일, 드래그앤드롭, IE 모드에서 ActiveX 사용 시도</span>
+  </div>
+
+  <div id="list" class="file-list"></div>
+
+  <div id="message" class="msg" style="display:none;"></div>
+</div>
+
+<script>
+/*
+ IE 모드(IE11) 호환 JS: var 사용, addEventListener 사용(IE11 지원)
+ - 파일 여러개 처리
+ - 드래그앤드롭 (dragover, drop)
+ - ActiveXObject 사용 시도 (예: ADODB.Stream 읽기 또는 자체 ActiveX 복호기)
+ - ActiveX 실패 시 FileReader fallback 처리
+*/
+
+// 유틸: 엘리먼트 선택
+function $(id){ return document.getElementById(id); }
+
+var uploader = $('uploader');
+var fileInput = $('fileInput');
+var list = $('list');
+var startBtn = $('startBtn');
+var clearBtn = $('clearBtn');
+var message = $('message');
+
+var filesArray = []; // { file: File, status: 'pending'|'processing'|'done'|'error', result: ... }
+
+// 드래그 앤 드롭
+uploader.addEventListener('dragover', function(e){
+  e.preventDefault();
+  uploader.className = uploader.className.indexOf('dragover') === -1 ? uploader.className + ' dragover' : uploader.className;
+});
+
+uploader.addEventListener('dragleave', function(e){
+  e.preventDefault();
+  uploader.className = uploader.className.replace(' dragover','');
+});
+
+uploader.addEventListener('drop', function(e){
+  e.preventDefault();
+  uploader.className = uploader.className.replace(' dragover','');
+  var dt = e.dataTransfer || window.event && window.event.dataTransfer;
+  if (dt && dt.files) {
+    handleFileList(dt.files);
+  }
+});
+
+// 파일 입력
+fileInput.addEventListener('change', function(e){
+  handleFileList(fileInput.files);
+});
+
+// 파일 목록 추가 처리
+function handleFileList(fileList) {
+  for (var i = 0; i < fileList.length; i++) {
+    var f = fileList[i];
+    filesArray.push({ file: f, status: 'pending' });
+  }
+  renderList();
+}
+
+function renderList() {
+  list.innerHTML = '';
+  for (var i = 0; i < filesArray.length; i++) {
+    var info = filesArray[i];
+    var item = document.createElement('div');
+    item.className = 'file-item';
+    var name = document.createElement('span');
+    name.className = 'name';
+    name.innerText = (i+1) + '. ' + info.file.name + ' (' + Math.round(info.file.size/1024) + ' KB)';
+    var status = document.createElement('span');
+    status.className = 'status';
+    status.innerText = info.status;
+    item.appendChild(name);
+    item.appendChild(status);
+    var clearfix = document.createElement('div');
+    clearfix.className = 'clearfix';
+    item.appendChild(clearfix);
+    list.appendChild(item);
+  }
+}
+
+// 메시지 표시
+function showMessage(text) {
+  message.style.display = 'block';
+  message.innerText = text;
+}
+
+// ActiveX 사용 가능 여부 확인 (IE 모드에서만 성공)
+function isActiveXAvailable() {
+  try {
+    // IE11 in IE mode supports ActiveXObject if allowed
+    return !!window.ActiveXObject || "ActiveXObject" in window;
+  } catch (e) {
+    return false;
+  }
+}
+
+// ActiveX 예시: ADODB.Stream를 이용해 파일 내용을 읽는 샘플(로컬경로가 필요)
+// 주의: 실제로 웹 브라우저의 File input으로 얻은 File 객체의 경로를 직접 ActiveX로 읽을 수 없음.
+// ActiveX를 통한 복호화는 일반적으로 ActiveX 컨트롤(서버사이드 또는 로컬허용된 COM 객체)과 연동해야 함.
+// 아래는 "만약 사용자 환경에서 ActiveX로 직접 데이터 처리하는 경우"의 구조 예시입니다.
+function tryActiveXDecrypt(file, callback) {
+  // 이 함수는 IE 모드에서 ActiveX를 직접 호출하는 예시 구조. 실제 복호화 로직은 여기에 넣으세요.
+  try {
+    if (!isActiveXAvailable()) {
+      throw new Error('ActiveX not available');
+    }
+    // 예: ActiveX 기반 복호기(가상의 ProgID: MyDecrypt.ActiveX) 사용 예시
+    // var decryptor = new ActiveXObject('MyDecrypt.ActiveX');
+    // var fileData = readFileViaActiveX(file); // 로컬 경로 필요 → 보통 불가
+    // var out = decryptor.decrypt(fileData, 'password-or-key');
+    // callback(null, out);
+
+    // 샘플: ADODB.Stream로 로컬 파일을 읽는 구조(주의: 파일 경로 필요, 보안 이슈)
+    // var stream = new ActiveXObject('ADODB.Stream');
+    // stream.Type = 1; // binary
+    // stream.Open();
+    // stream.LoadFromFile('C:\\path\\to\\file'); // 웹에서 제공한 File 객체의 경로를 알 수 없으므로 일반적 상황에서는 사용불가
+    // var bytes = stream.Read();
+    // stream.Close();
+    // callback(null, bytes);
+
+    // 데모용으로 ActiveX 사용 불가/비워두기:
+    throw new Error('ActiveX-example placeholder: 실제 환경에 맞는 ActiveX COM 객체로 교체하세요.');
+  } catch (err) {
+    callback(err);
+  }
+}
+
+// FileReader 기반 복호화 예시: 브라우저에서 파일 내용을 읽고(예: ArrayBuffer) 처리
+function jsDecryptFile(file, callback) {
+  var reader = new FileReader();
+  reader.onload = function(e){
+    var arrayBuffer = e.target.result;
+    // 여기에서 복호화 알고리즘을 적용하세요. (예: WebCrypto, custom JS)
+    // 예시는 그대로 "읽음"을 돌려주는 것으로 대체
+    try {
+      // TODO: 실제 복호화 로직으로 대체
+      var result = arrayBuffer; // placeholder
+      callback(null, result);
+    } catch (ex) {
+      callback(ex);
+    }
+  };
+  reader.onerror = function(e){
+    callback(new Error('FileReader error'));
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+// 전체 복호화 처리 함수 (다중 파일)
+function processAllFiles() {
+  if (filesArray.length === 0) {
+    showMessage('처리할 파일이 없습니다.');
+    return;
+  }
+  showMessage('복호화 시작...');
+  // 순차 처리 (간단히)
+  var idx = 0;
+
+  function next() {
+    if (idx >= filesArray.length) {
+      showMessage('모든 파일 처리 완료.');
+      renderList();
+      return;
+    }
+    var info = filesArray[idx];
+    info.status = 'processing';
+    renderList();
+
+    // 1) ActiveX 시도 (가능하면)
+    tryActiveXDecrypt(info.file, function(err, result){
+      if (!err && result) {
+        info.status = 'done (ActiveX)';
+        info.result = result;
+        idx++;
+        next();
+      } else {
+        // ActiveX 실패하거나 사용 불가 → FileReader fallback
+        jsDecryptFile(info.file, function(err2, result2){
+          if (!err2) {
+            info.status = 'done (JS)';
+            info.result = result2;
+          } else {
+            info.status = 'error';
+            info.result = null;
+          }
+          idx++;
+          next();
+        });
+      }
+    });
+  }
+
+  next();
+}
+
+// 버튼 이벤트
+startBtn.addEventListener('click', function(e){
+  e.preventDefault();
+  processAllFiles();
+});
+clearBtn.addEventListener('click', function(e){
+  e.preventDefault();
+  filesArray = [];
+  renderList();
+  message.style.display = 'none';
+});
+
+// 초기 렌더
+renderList();
+
+// 페이지 로드시 ActiveX 사용 권장 안내 (IE 모드에서만 보이게)
+window.onload = function() {
+  if (isActiveXAvailable()) {
+    showMessage('이 페이지는 ActiveX 사용을 시도합니다. Edge의 IE 모드 또는 IE에서 열어주시기 바랍니다. (ActiveX가 비활성화 되어 있으면 JS 방식으로 처리합니다.)');
+  } else {
+    showMessage('ActiveX를 사용할 수 없습니다. 브라우저의 일반 JS(FileReader)로 처리합니다.');
+  }
+};
+</script>
+</body>
+</html>
