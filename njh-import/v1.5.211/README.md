@@ -36,7 +36,7 @@ v1.5.210과 동일: 서버는 `설치가이드-통합.html` 0단계부터, 기�
 **노트북 로컬 LLM 전용 실험**입니다(선택 사항, 서버와 무관). ollama v0.32.1의
 Vulkan 백엔드 라이브러리 + 설치안내(`INSTALL-VULKAN.md`) + A/B 측정 스크립트
 (`measure-igpu-ab.sh`) 동봉. `C:\njh-ollama\lib\ollama\vulkan` 에 폴더를 넣고
-`OLLAMA_NO_CLOUD=1 OLLAMA_VULKAN=1 ollama serve` 로 켠 뒤 `bash measure-igpu-ab.sh` 를 돌리면
+`OLLAMA_NO_CLOUD=1 OLLAMA_VULKAN=1 OLLAMA_IGPU_ENABLE=1 ollama serve` 로 켠 뒤 (IGPU_ENABLE 없으면 내장 GPU 를 드랍함) `bash measure-igpu-ab.sh` 를 돌리면
 CPU vs 내장GPU 속도 비교표와 채택/폐기 판정이 나옵니다. 결과 표 사진만 공유해 주세요.
 암호는 다른 킷과 동일합니다.
 
