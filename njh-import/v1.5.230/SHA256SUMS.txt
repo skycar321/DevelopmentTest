@@ -1,0 +1,2 @@
+c8423b037c42b061cde449332ca483e30e497c39222d03118cb8238e0070e7d1  njh-ollama-runtime-v0.32.6-slim.7z
+fffc18b67bc6842e2fc9e888264e52eaece3a973d7f941a7a423eec2f2f0be2d  njh-win-laptop-v1.5.230.7z
