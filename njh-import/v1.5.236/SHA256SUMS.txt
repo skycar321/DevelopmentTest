@@ -1,1 +1,3 @@
+d0bb3811e1c25abbd6e0b8c4089716c9e7b2059767954a87ae9e4ef3cafb4778  njh-cli-v1.5.236.7z
 d7b0ffcfccd4781e57dc49de04db7e685dac087e2982e342adf6fd2a4db43be1  njh-gateway-v1.5.236.7z
+8d151df6507bbcb9a04fe556dd36957621d1225e9b122fba5ff0ba0f66b9de8a  njh-win-laptop-v1.5.235.7z
