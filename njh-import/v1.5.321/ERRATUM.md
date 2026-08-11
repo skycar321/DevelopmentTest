@@ -81,6 +81,43 @@ listed copy.
 | Gateway `docs/README.md`, its final measurement categories `대화형 사용 가능`, `비동기 작업 전용`, and `사용 불가`, and its wording about whether an install is usable | Interpret these categories as gateway transport and performance availability only. They do not measure semantic correctness of an answer or task completion. |
 | Gateway `docs/FIELD-TEST-CHECKLIST.md`, the expected-result statement that exit `0` means `대화형 사용 가능` | Exit `0` establishes only the checklist’s measured response, timing, routing, and HTTP predicates. It is not a model-correctness or task-acceptance verdict. |
 
+## Additional embedded passages to disregard
+
+The following C5 paths are also present in the v1.5.321 manifest. They are
+separate shipped documents and are covered by this erratum in addition to the
+rows above.
+
+| Extracted C5 document and passage to disregard | Replace it with this statement |
+| --- | --- |
+| `demo/README.md` and `demo/njh-demo-playbook.html`, scenario tables and instructions that present security repair, Vue migration, document consolidation, contradiction detection, and dependency-graph generation as runnable NJH outcomes, including the statement that Codi-direct scenarios work as-is | These are demonstration scenarios and expected outcomes, not evidence that the bundled models correctly perform those tasks. Do not use a scenario description, a completed-looking demonstration, or a Codi-direct instruction as a delivery capability or acceptance result. The model boundary is only the **Correct model-capability statement** above. |
+| `demo/njh-demo-api/README.md` and `demo/njh-demo-api/SCENARIOS.md`, source analysis, security audit, vulnerability repair, server startup, and before/after exploit verification described as NJH agent capabilities or expected results | These documents specify a security-repair demonstration; they do not establish that the bundled models can correctly find, change, or verify a security issue. Do not approve a model-directed security finding or code change from this delivery without an independent human or checker. |
+| `demo/njh-demo-convert/SCENARIOS.md`, `demo/njh-demo-vue-migration/README.md`, and `demo/njh-demo-vue-migration/SCENARIOS.md`, generated Airflow artifacts, model-produced Vue migration, verified transformation, and pixel-identical output described as expected results | These are transformation scenario targets, not demonstrated delivery capability. The bundled 7B model is demonstrated only for the exact oracle-checked simplified merge; neither a migration description nor an expected generated artifact establishes correct transformation, file editing, or validation. |
+| `demo/njh-demo-depgraph/README.md` and `demo/njh-demo-depgraph/SCENARIOS.md`, claims that NJH finds modules and edges, detects a cycle, and creates named Markdown or HTML outputs | These are dependency-graph demonstration expectations, not a supported general analysis or file-generation capability. Do not accept a graph, cycle finding, or generated file merely because a demo describes it or a command exits successfully. |
+| `demo/njh-demo-docs/README.md` and `demo/njh-demo-docs/SCENARIOS.md`, claims that NJH reads, consolidates, cross-validates, and saves output from local documents, including language that this proves AI did real work | These are document-processing demonstration expectations, not proof of correct model analysis or completion. Treat any resulting report or contradiction finding as untrusted until a person, source of record, or independent checker validates it. |
+| `docs/presentation/njh-2slide-v2.pptx`, slide 1 and slide 2, and `docs/presentation/njh-slide1-v2.pptx`, which say AI finds, reads, directly checks project files, and follows an explore/change/verify/artifact/completion workflow | These separately shipped PowerPoint files make the same general-work implication as the HTML presentation rows above. They do not establish correct autonomous file work, validation, artifact creation, or general task completion by the bundled models. |
+
+## Embedded visual captures to disregard as capability evidence
+
+The following PNG files are historical screenshots, not corrected text. **There
+is no replacement sentence inside an image.** Keep the image only as a record
+of what was shown; do not take its depicted result as evidence that the bundled
+models can correctly complete the action. Each row states what the image shows
+and why that implication no longer holds.
+
+| Extracted C5 image | What it shows and why its capability implication no longer holds |
+| --- | --- |
+| `docs/presentation/captures-2026-08-02/00-full-session.png` | A claimed end-to-end session: source inspection, approval, edit application, and a final changed-query summary. It depicts a completed general file-work flow, but the delivery has not demonstrated correct autonomous file work or general task completion. |
+| `docs/presentation/captures-2026-08-02/02-source-discovery.png` and `docs/presentation/captures-2026-08-02/del_yn-02-read-context.png` | Claimed source reading and a source-grounded change-direction summary. The two separately shipped paths have identical visual content; neither establishes that the model’s analysis or recommended change is correct. |
+| `docs/presentation/captures-2026-08-02/03-approval-diff.png` and `docs/presentation/captures-2026-08-02/del_yn-03-approval-diff.png` | A model-directed `edit_file` approval diff. The two separately shipped paths have identical visual content; approval of a proposed edit is not evidence that the edit is correct or that the model can safely perform file work. |
+| `docs/presentation/captures-2026-08-02/04-final-summary.png` and `docs/presentation/captures-2026-08-02/del_yn-04-result.png` | A summary saying a change was applied and describing its query impact. The two separately shipped paths have identical visual content; an applied change and its claimed impact are not a semantic acceptance result. |
+| `docs/presentation/captures-2026-08-02/05-result-file.png` | The asserted post-edit source file with a new query condition. Seeing a resulting file does not establish that its content or effect is correct; independent review remains required. |
+| `docs/presentation/captures-2026-08-02/06-pk-impact-analysis.png` and `docs/presentation/captures-2026-08-02/pk-impact-analysis.png` | A completed multi-file primary-key impact analysis with concrete proposed edits. The two separately shipped paths have identical visual content; the delivery does not demonstrate correct general analysis or file-change recommendations. |
+| `docs/presentation/captures/02-tool-call.png` | A first tool execution reported as successful. Tool execution is not model correctness or task acceptance. |
+| `docs/presentation/captures/03-result-summary.png` | A dependency-analysis summary with `status: passed`. The displayed status is not independent semantic validation of the analysis. |
+| `docs/presentation/captures/04-file-created.png` | An approved `write_file` operation reported as complete. A completed write does not establish that the created file is correct or fit for use. |
+| `docs/presentation/captures/05-open-result.png` | A created result file reopened successfully. Reopening a file proves only that the file can be read, not that its contents are correct. |
+| `docs/presentation/captures/06-completion-report.png` | A completion report claiming a generated dependency graph, validation pass, and output files. These are depicted workflow results, not evidence of a generally correct model workflow; validate semantics independently. |
+
 ## Laptop archive clarification
 
 In the Laptop archive, `README.md` and `laptop-guide.html` describe seven local
