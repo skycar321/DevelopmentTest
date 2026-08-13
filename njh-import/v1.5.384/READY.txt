@@ -1,0 +1,4 @@
+READY transport-only package-pickup 1.5.384 44267639aa5a
+REPRESENTATIVE_TASK_READINESS=recipient-config-merge-v2=pass,recipient-config-merge-original-v1=known_failure
+A transport-ready package is not a general task-correctness or PASS_FIRST_TASK claim.
+See representative-task-readiness.json and require a recipient-side semantic oracle receipt before claiming any listed task is usable.
