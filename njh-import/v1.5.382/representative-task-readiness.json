@@ -1,0 +1,189 @@
+{
+  "schema_version": 3,
+  "required_task_contracts": [
+    "recipient-config-merge-v2",
+    "recipient-config-merge-original-v1"
+  ],
+  "tasks": [
+    {
+      "contract_id": "recipient-config-merge-v2",
+      "status": "pass",
+      "eligible_models": [
+        "qwen2.5-coder:7b"
+      ],
+      "evidence": {
+        "execution": "completed",
+        "backend": "available",
+        "oracle": "passed",
+        "models": [
+          "qwen2.5-coder:7b"
+        ],
+        "observations": [
+          "The 100 scored direct qwen2.5-coder:7b runs recorded 93 strict standalone-JSON passes and semantic correctness after bounded fence extraction in all 100 runs; this is a semantic 100/100 claim, not a raised formatting pass rate.",
+          "The fence appeared in 3 of 50 warm runs and 3 of 40 API-confirmed cold runs, so the formatting envelope was observed in both cohorts rather than attributed to cold start.",
+          "qwen2.5-coder:0.5b failed the same simplified task and is ineligible to back this contract."
+        ]
+      },
+      "measurement": {
+        "report": "reports/recipient-target-node-simple-task-measurement-2026-08-11.json",
+        "rate_status": "UNSEEDED_EMPIRICAL_RATE",
+        "reproducibility": "NONDETERMINISTIC_SAMPLE",
+        "usage_policy": "OBSERVATION_ONLY_NO_GUARANTEE_OR_HOST_PREDICTION",
+        "runs": 300,
+        "strict_passes": 285,
+        "semantic_passes": 300,
+        "host_observations": [
+          {
+            "host": "om-baseline",
+            "hardware": "OM baseline",
+            "corporate_dev_node": false,
+            "runs": 100,
+            "strict_passes": 93,
+            "semantic_passes": 100
+          },
+          {
+            "host": "mac-new-tb",
+            "hardware": "mac-new-tb remote development node",
+            "corporate_dev_node": false,
+            "runs": 100,
+            "strict_passes": 92,
+            "semantic_passes": 100
+          },
+          {
+            "host": "oracle",
+            "hardware": "oracle remote development node",
+            "corporate_dev_node": false,
+            "runs": 100,
+            "strict_passes": 100,
+            "semantic_passes": 100
+          }
+        ],
+        "claims": {
+          "semantic_correctness": {
+            "scope": "machine-invariant",
+            "runs": 300,
+            "passes": 300,
+            "measuring_hosts": [
+              "om-baseline",
+              "mac-new-tb",
+              "oracle"
+            ]
+          },
+          "strict_contract": {
+            "scope": "machine-dependent",
+            "runs": 300,
+            "passes": 285,
+            "measuring_hosts": [
+              "om-baseline",
+              "mac-new-tb",
+              "oracle"
+            ],
+            "delivery_host_measurement": "not_measured_here"
+          }
+        },
+        "machine_coverage": {
+          "corporate_dev_node_coverage": "none",
+          "caveat": "None of the three measured machines is a corporate dev node; semantic correctness was invariant across these observed machines, but the kit destination hardware remains unmeasured."
+        }
+      },
+      "response_format_policy": {
+        "accepted_well_formed_formats": [
+          "standalone-json",
+          "markdown-json-fence-stripped"
+        ],
+        "fence_normalization_effect": "well-formedness-only",
+        "semantic_correctness_effect": "unchanged"
+      },
+      "required_before_usable_claim": "recipient-side-semantic-oracle-receipt",
+      "limitations": [
+        "This declaration covers only the fixed recipient-config-merge-v2 two-level merge task.",
+        "Fence normalization changes only what is accepted as WELL-FORMED; it changes nothing about correctness. The measured claim is semantic correctness in 100 of 100 direct runs, not a raised formatting pass rate.",
+        "The task no longer tests arrays, null deletion, object recreation, retry semantics, or arbitrary multi-layer merge behavior.",
+        "The release build does not invoke a recipient inference backend or create a semantic oracle receipt.",
+        "Installation, backend reachability, and artifact existence do not establish task correctness."
+      ]
+    },
+    {
+      "contract_id": "recipient-config-merge-original-v1",
+      "status": "known_failure",
+      "eligible_models": [],
+      "evidence": {
+        "execution": "completed",
+        "backend": "available",
+        "oracle": "failed",
+        "models": [
+          "qwen2.5-coder:7b",
+          "qwen3-coder:30b"
+        ],
+        "observations": [
+          "The fresh repeated study completed 20 direct runs on each model, with semantic passes after fence extraction at 0 of 20 for qwen2.5-coder:7b and 0 of 20 for qwen3-coder:30b.",
+          "The 7B model repeatedly reordered the model array and retained or moved deleted fields; the 30B model retained retry.backoffMs in all 20 runs.",
+          "This measured limit is declared rather than hidden behind the passing simplified task; cdx_shell's deterministic execution path is a separate follow-up."
+        ]
+      },
+      "measurement": {
+        "report": "reports/recipient-original-task-model-reliability-2026-08-11.json",
+        "rate_status": "UNSEEDED_EMPIRICAL_RATE",
+        "reproducibility": "NONDETERMINISTIC_SAMPLE",
+        "usage_policy": "OBSERVATION_ONLY_NO_GUARANTEE_OR_HOST_PREDICTION",
+        "runs": 40,
+        "strict_passes": 0,
+        "semantic_passes": 0,
+        "host_observations": [
+          {
+            "host": "om-original-study",
+            "hardware": "OM baseline",
+            "corporate_dev_node": false,
+            "runs": 40,
+            "strict_passes": 0,
+            "semantic_passes": 0
+          }
+        ],
+        "claims": {
+          "semantic_correctness": {
+            "scope": "machine-dependent",
+            "runs": 40,
+            "passes": 0,
+            "measuring_hosts": [
+              "om-original-study"
+            ],
+            "delivery_host_measurement": "not_measured_here"
+          },
+          "strict_contract": {
+            "scope": "machine-dependent",
+            "runs": 40,
+            "passes": 0,
+            "measuring_hosts": [
+              "om-original-study"
+            ],
+            "delivery_host_measurement": "not_measured_here"
+          }
+        },
+        "machine_coverage": {
+          "corporate_dev_node_coverage": "none",
+          "caveat": "The original-task study was measured on the OM baseline only, which is not a corporate dev node; no cross-machine portability claim is made."
+        }
+      },
+      "response_format_policy": {
+        "accepted_well_formed_formats": [
+          "standalone-json",
+          "markdown-json-fence-stripped"
+        ],
+        "fence_normalization_effect": "well-formedness-only",
+        "semantic_correctness_effect": "unchanged"
+      },
+      "required_before_usable_claim": "recipient-side-semantic-oracle-receipt",
+      "limitations": [
+        "This is the original multi-rule configuration merge with nested deletion, recreation, exact array ordering, and scalar precedence requirements.",
+        "The measured 0 of 40 semantic result is a known failure in this direct-model setup, not a claim that the deterministic utility path cannot solve the task.",
+        "No model is currently eligible to back a correctness claim for this task; the task remains listed so the simplified pass cannot hide this limit.",
+        "The report's 40-run denominator contains 20 qwen2.5-coder:7b runs and 20 qwen3-coder:30b runs.",
+        "A recipient must not infer general model quality or task readiness from the simplified task's separate pass."
+      ]
+    }
+  ],
+  "measured_task_contracts": [
+    "recipient-config-merge-v2",
+    "recipient-config-merge-original-v1"
+  ]
+}
