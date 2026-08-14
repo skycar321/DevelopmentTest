@@ -1,0 +1,3 @@
+5dd5833dcd5d7d76f581de7e54e04990a274ecf587ffeb7f49430f484dc56128  /Users/nam64/njh-kits/package-pickup-2026-08-14-v1.5.391-b5f5efc536db/njh-cli-v1.5.391.7z
+86ebee91ebe232892f9e26066118c665abde503a3f2468c40595cbf601b2b7d6  /Users/nam64/njh-kits/package-pickup-2026-08-14-v1.5.391-b5f5efc536db/njh-gateway-v1.5.391.7z
+8582362bbf348132cdf2af4382cd5dad379f207eea0271a06a9f1a936251539b  /Users/nam64/njh-kits/package-pickup-2026-08-14-v1.5.391-b5f5efc536db/njh-win-laptop-v1.5.391.7z
