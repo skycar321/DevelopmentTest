@@ -18,7 +18,7 @@ tar -czf njh-ocr-engine-v0.1.tar.gz -C njh-ocr-engine-v0.1 .
 ## C. 모델 서버 2대 — 각각 4줄
 ```bash
 cd /data/llm/incoming
-mkdir -p ~/.njh-cli && cp site.env.prefilled ~/.njh-cli/site.env && vi ~/.njh-cli/site.env   # <REPLACE_> 채움
+mkdir -p ~/.njh-cli && cp site.env.prefilled ~/.njh-cli/site.env && vi ~/.njh-cli/site.env   # <REPLACE_> 4종만 채움
 mkdir -p njh-gateway-kit && tar -xzf njh-gateway-v1.5.474.tar.gz -C njh-gateway-kit
 bash njh-gateway-kit/bootstrap-import.sh --role model --dry-run && bash njh-gateway-kit/bootstrap-import.sh --role model
 ```
@@ -27,7 +27,7 @@ bash njh-gateway-kit/bootstrap-import.sh --role model --dry-run && bash njh-gate
 ## D. 게이트웨이 서버 1대 — 6줄
 ```bash
 cd /data/llm/incoming
-mkdir -p ~/.njh-cli && cp site.env.prefilled ~/.njh-cli/site.env && vi ~/.njh-cli/site.env   # <REPLACE_> 채움
+mkdir -p ~/.njh-cli && cp site.env.prefilled ~/.njh-cli/site.env && vi ~/.njh-cli/site.env   # <REPLACE_> 4종만 채움
 export NJH_GATEWAY_TOKEN='<값>' NJH_EMBED_GATEWAY_TOKEN='<값>' NJH_OCR_GATEWAY_TOKEN='<값>'
 mkdir -p njh-gateway-kit && tar -xzf njh-gateway-v1.5.474.tar.gz -C njh-gateway-kit
 mkdir -p njh-ocr-engine && tar -xzf njh-ocr-engine-v0.1.tar.gz -C njh-ocr-engine   # bootstrap이 이 sibling 위치 자동 감지
