@@ -1,0 +1,250 @@
+# B02-B04 SHA256SUMS v2
+# The archive and report are release-side files; other entries are extracted 7z files.
+0ab5a7dc757b2ecc1e3c34b1a25e72303dd2fbf4a12fff93b1a0e6eca160e3da  airflow-bundle-20260826_112055.7z
+18a0233b7251043e34d391e7efbc92730c3e3c2765f724322f1d3de741cefbce  airflow-bundle.tar.gz
+fee88fb46b8e06d51a8e4de461284ebb1bcf6f3751459f83dd598eaed87a5e1a  batch-admin-reference/AIRFLOW_CONTROL_PROCESS.html
+86b553a08760c3caffd9378f4bdddb603c1ecca2d540e264671b28c9eee36fe6  batch-admin-reference/APPLICATION_YML_GUIDE.md
+3df1824f521fcd7c0ba28b9d817ccda03f269b4693a70e52b395d0de71967ed7  batch-admin-reference/README.md
+fa7aff6648328a8219cbacf995d797895d0946d27de16c6e5cf6bdd8e408c145  batch-admin-reference/TEMPLATE_COMBINATION_RECIPES.html
+9021c8ebf4b99b183ae0bcaf35930beca2f2a4ad415ca3d60f21bf2035b45e06  batch-admin-reference/sql/airflow_control_ddl.sql
+4f614251411767ff86ec377dabcea2e626a84168174afcce8fc121c3f85057eb  batch-admin-reference/sql/airflow_idempotency_rollback.sql
+03533e52eeac09ef34aa880c7ff4fb5e7b96092c33f6c924f3c767a5bde6c716  batch-admin-reference/sql/persistent_logins.sql
+e82349104c083bb0ee9215be7605da7d6ae9e8b500437ffda830d6e044450bbb  batch-admin-reference/src/main/java/kt/batchadmin/airflow/AirflowYamlLoader.java
+69cd118fb0a6910a4d5ef4302b54bc2cce76a22ee4869205e6fe76de7dcf79a6  batch-admin-reference/src/main/java/kt/batchadmin/airflow/autogen/AirflowAutogenController.java
+70e9623dcc6e4fa35faa48d7db6635816406af06c060bf9125c1995bbc6c585a  batch-admin-reference/src/main/java/kt/batchadmin/airflow/autogen/AirflowAutogenNotificationSource.java
+5a3612bfc2e9195819e4c317f1c5351a21996fbc6382f46013bdfcfef1d172e1  batch-admin-reference/src/main/java/kt/batchadmin/airflow/autogen/AirflowAutogenService.java
+3c3e938f1be7ef443ea86100dc6f1884d8044e08a445f54ee93dd4b0d9f832be  batch-admin-reference/src/main/java/kt/batchadmin/airflow/comn/AirflowApiErrorMessages.java
+2e28714eeeeb8bd5078d26b909d917b23a9762e4790ee3d85400664290bfedff  batch-admin-reference/src/main/java/kt/batchadmin/airflow/comn/AirflowApprovalMapper.java
+57786750f604dc16ef5c6453dc853370903393b8907bac40ea65dc200cb5360e  batch-admin-reference/src/main/java/kt/batchadmin/airflow/comn/AirflowDagProtection.java
+1ca6c2cdb2ed7c136fbe067674de157514558b4d3c19094bc6334d8983491ec5  batch-admin-reference/src/main/java/kt/batchadmin/airflow/comn/AirflowDefinitionWriteLockedException.java
+b30bcc431daf5baca67947a0ebb43b05c6049e1f7502e6aa46d787f123519ecb  batch-admin-reference/src/main/java/kt/batchadmin/airflow/comn/AirflowIdempotencyConflictException.java
+ab2836dacd9bd1f999352cc4f9771519d903c1a1b4f7862c7305e77798194abb  batch-admin-reference/src/main/java/kt/batchadmin/airflow/comn/AirflowIdempotencyInProgressException.java
+8683d9413e2a94bee8ba6f9526ddd324c019c589335f7a4cad2f97bcbbede727  batch-admin-reference/src/main/java/kt/batchadmin/airflow/comn/AirflowKoreanParticles.java
+5b2e72ddf1c6a3e21d59758e871ca22eddf39234bf3a9758f230845d562f9319  batch-admin-reference/src/main/java/kt/batchadmin/airflow/comn/AirflowProperties.java
+793f0ca4f44330a384a47dc4072fb54813389abd89157bf8b8029253a5cc357e  batch-admin-reference/src/main/java/kt/batchadmin/airflow/comn/AirflowProtectedDagException.java
+6b80bcccb5d3a8446f5dadf66f3ad87a3536343e684e445c2d987b2071bda12e  batch-admin-reference/src/main/java/kt/batchadmin/airflow/comn/AirflowRestClient.java
+0c4998186c8e53e56d6700a873fe79f18b88e8d5b0717218eadedfa0392263bd  batch-admin-reference/src/main/java/kt/batchadmin/airflow/control/AirflowActionRequestVO.java
+fe285503f730f58e7e6baac9f53145be7af022a04cb42455158f505517c27359  batch-admin-reference/src/main/java/kt/batchadmin/airflow/control/AirflowCatalogValidator.java
+4f6b03fb0e7782ad2f217516af98cd1231ed596655e9ce548f44add85c30f512  batch-admin-reference/src/main/java/kt/batchadmin/airflow/control/AirflowControlController.java
+7240eeb1ee36e82d3088a7fde8288fc10d5df8e471fe1611539ca4ffb6a62221  batch-admin-reference/src/main/java/kt/batchadmin/airflow/control/AirflowControlService.java
+1063f9129cc256156189dba41834e5b954227431a9f0250f9d04757289eb7ba3  batch-admin-reference/src/main/java/kt/batchadmin/airflow/control/AirflowDagApprovalVO.java
+8fe27ed5cd16c59e330a3ad3383e294872e7226c27295996cb82bd101c4355b4  batch-admin-reference/src/main/java/kt/batchadmin/airflow/control/AirflowExecutedRunHistoryItem.java
+aae848d7cf204b2f0398061fae630e098e13a6ae84773e591e952dc1ccd7a202  batch-admin-reference/src/main/java/kt/batchadmin/airflow/control/AirflowRunApprovalVO.java
+481f7d7a7366fa72f2f2312ad1e3998a64aa87e1fb6c09ffcf5d975190e1c67a  batch-admin-reference/src/main/java/kt/batchadmin/airflow/envmanifest/AirflowEnvManifestController.java
+8cfd6be0fe9a63ec4e2ecab05aab54ed03ebe3e9e557a4fb2cb2a69d8f0e142d  batch-admin-reference/src/main/java/kt/batchadmin/airflow/envmanifest/AirflowEnvManifestService.java
+0777b2c73be6bf385ce94ea64a19cd82f4139ed37a33f3ed1acf285d7d5e386b  batch-admin-reference/src/main/java/kt/batchadmin/airflow/lineage/AirflowLineageController.java
+1346fe3f4c571541a0c925d27b8dcb8fecb8703953f9a39edeb27704e2fa4d5f  batch-admin-reference/src/main/java/kt/batchadmin/airflow/lineage/AirflowLineageNotificationSource.java
+8ac05600c7c52c8a204f46b1b32a960771890ec7be6168899c6ef1fc9a28b756  batch-admin-reference/src/main/java/kt/batchadmin/airflow/lineage/AirflowLineageSuggestionService.java
+0d2f495bfee4f96b02f54871278ba35e4cb1d8156e4fb38035528ce04ea0b8cf  batch-admin-reference/src/main/java/kt/batchadmin/airflow/notification/AirflowNotificationService.java
+1215fabda6f1f8258d671e7be5058898d0087329f4856e5ab851c9fcaf9a7bd9  batch-admin-reference/src/main/java/kt/batchadmin/airflow/notification/AirflowNotificationVO.java
+41c9247870ed0e8895f6377126546fe036df5294f3d61c8dcec7c29a9f6d94d1  batch-admin-reference/src/main/java/kt/batchadmin/airflow/notification/AirflowSystemNotificationSource.java
+ed0720f3d5c2f099dd41f0e8fb780b7b78d97147f379b56d62a932056016b30b  batch-admin-reference/src/main/java/kt/batchadmin/airflow/validation/AirflowScheduleValidationController.java
+a4c13e1e93203535687f09aa4faad9ebeda4b656a237300150ba803e736f8e33  batch-admin-reference/src/main/java/kt/batchadmin/airflow/validation/AirflowScheduleValidationService.java
+b0dc54b3627003e26dc2994933143663b1328c7664104b9f40f4fb9fa481f352  batch-admin-reference/src/main/java/kt/batchadmin/config/SecurityConfig.java
+29fa736489593c027af4a884d9776a0f1164e5309892503b226b104f4c298905  batch-admin-reference/src/main/java/kt/batchadmin/login/LoginUserInfoResponse.java
+0ba16a2955f2f6d3c4a08908a704f0207f19fae81df7618b14e59318088b75c7  batch-admin-reference/src/main/java/kt/batchadmin/login/SessionController.java
+4557822d94d508cb5ef95f3c48cbdf1a36a3213bc0b879254616a42a6c4940f8  batch-admin-reference/src/main/resources/application.yml
+ca6f3459c2e0c27ada43c2617427e3d1dfd6e515f043ca88a6e490e3f4a75457  batch-admin-reference/src/main/resources/mapper/airflowApprovalMapper.xml
+d35ddf344f591e17f5ef32e2a92e6bf560d0b4d22aab16cf4decd066fa976730  batch-admin-reference/src/main/resources/static/css/airflow-menu.css
+53d0f11445ac219989448a66f78b4d76b6aa3d6fb180d3868e9aacd77cd7b05e  batch-admin-reference/src/main/resources/static/css/airflow-session.css
+85a64ce96c14647157ce3d65cb5c8ae93278c404cc3aa4e6b5e6ae5fe3b2f84b  batch-admin-reference/src/main/resources/static/css/airflow.css
+944228ff4a6a0ebcff4f7cbceb82ef9d01b62a7bf56bd406b83f2b7237d4831a  batch-admin-reference/src/main/resources/static/js/airflow/airflow-autogen-sync.js
+7e3e883e9021eb95455e920654cfdc121196239adace15ed2327164f5a95fb3c  batch-admin-reference/src/main/resources/static/js/airflow/airflow-control.js
+19e7d1ff12a5febaf2263aa88a801b7fe3d34e686d894d54e26997c88e0c1068  batch-admin-reference/src/main/resources/static/js/airflow/airflow-env-manifest.js
+a10eefa35014bef4e679a841c335b14d858ea770b11efa118f2e9674294db738  batch-admin-reference/src/main/resources/static/js/airflow/airflow-feedback.js
+cb53efb14e2315518a352364529d0fc8ca58796605473af71512fe3a7189a94d  batch-admin-reference/src/main/resources/static/js/airflow/airflow-focus-continuity.js
+6b0283a3fa54b87e6217fd0ca2237a6b556d53b34523f2eb2c837813f1f477f9  batch-admin-reference/src/main/resources/static/js/airflow/airflow-lineage-suggestions.js
+c35de76b7a1fbc34fc9abd7d6ba03554783342d1856484425a15067db3b15c1e  batch-admin-reference/src/main/resources/static/js/airflow/airflow-notifications.js
+3cb63fec1d9703f37d0742e59b6704264e4813acfa61d6316ae7a4c9a6894bd7  batch-admin-reference/src/main/resources/static/js/airflow/airflow-onboarding-loader.js
+622e37cc65fa3d9030a977ce1b11231eab9559043832458e5c77ce72ab8f9ab9  batch-admin-reference/src/main/resources/static/js/airflow/airflow-onboarding-tour.js
+e358f2ba565255563cf0532241487a794493a87d30607bad4b5f81de887897be  batch-admin-reference/src/main/resources/static/js/airflow/airflow-shell.js
+30cb4545cdceb26fd2e6a74d2a9cb8e75a2d051e59564de374273fd850ff3be7  batch-admin-reference/src/main/resources/static/js/airflow/airflow-yaml-builder.js
+53c27885b706527239cf8611616b6abeca36ee20618686498a1f21c8096f12c8  batch-admin-reference/src/main/resources/templates/fragments/header.html
+1ee48dd931902046060937730bb7fee34a8dda93d50e371773a6dee91a3b56f2  batch-admin-reference/src/main/resources/templates/views/airflow/airflow-approval.html
+6baef00c291f307bfbe096841afb7e736ac78fd5fc3e9aad929ee93e73f92af3  batch-admin-reference/src/main/resources/templates/views/airflow/airflow-autogen-sync.html
+a0ba4992e92dd51b9dd094a4863aa16b0b20cf84520656ba185ee9f2bced0408  batch-admin-reference/src/main/resources/templates/views/airflow/airflow-detail.html
+22eef0bc1d6af7d77cb8ff289b792a4b05b0afb45028f76de7f948a86711dc36  batch-admin-reference/src/main/resources/templates/views/airflow/airflow-env-manifest.html
+f35729e79b7a71df493b02318b1ea1bac053d825a5d798a149b5355217c3fe5a  batch-admin-reference/src/main/resources/templates/views/airflow/airflow-guide.html
+67d2323ed49d03fd73558c65789f463dfbc3abf2e08cd773c4b7797fc8e2f76c  batch-admin-reference/src/main/resources/templates/views/airflow/airflow-list.html
+fdf7e5c221919e5569d886242933767aa79988203582dadbab897a7ed7942cb2  batch-admin-reference/src/main/resources/templates/views/airflow/airflow-yaml-builder.html
+0fab458a1a2bc5bd3da77a0bd3dd1ab5155fd9ceb1e1ea7744bc43eb5b4a65c0  batch-admin-reference/src/main/resources/templates/views/session.html
+b294d0906748bac4c06085c71733bf7f867123466b585fc2423772132791282b  docs/ADD_NEW_JOB.md
+8ee327d55997be0525483e75e90339077f347e2799bdb2aa8da344c61eebccbb  docs/AIRFLOW_3X_READINESS.md
+13263099b2c8ad5ca864a54a38c389cd51a3c15290bd4d9ae6dca3d16a2c2f43  docs/AIRFLOW_온보딩_발표자료.html
+348c68f28c4af6d2f8477ca0da69fb896a4ac0898baa712bd63c31c302094375  docs/CATALOG_READBACK_STATUS_OPERATOR_DDL.md
+8a51e36a7270967f4f17069414310eb06567a631f4f0b415a446ec01f1622cef  docs/CHAIN_COMPOSITION_RUNBOOK.md
+9ae1b4c3541277630afd4f3fe1dd41efbda5a5aba59fc05f97ff7eb94e692df7  docs/CHANGELOG_20260709_122640_이후.md
+02a405f42f991b09842c79fc6b4d50ba310de51560b955bfaaca72bcd7d21ae8  docs/CHANGELOG_20260712_024510_이후.md
+c12ca1a6d45ec29f913ba027e21c066ae8aef9d51622ec35f11a6261b646e2c2  docs/CHANGELOG_vs_20260707_001641.md
+9e76da5f30d766c93f6d3975c237c69c9b21810c8686832e5a4b40a4bf1d7d4f  docs/CONFIG_MAP.md
+cd99e69142a9d775f92ac0b73c77d814b07446a2c06514c838790589f65ea091  docs/CONVENTIONS.md
+6cbae64e78c812abaf9b10ed5d7cdbe84afa5bf8a9ec5f88ad218c40cfd6ea7e  docs/DAG_AUTHORING_GUIDE.html
+a33497a3b291ca62bd62e706e238e59969b70afb944f5197cede55290d7a6599  docs/DISPATCHER_FACTORY.md
+0f1cf89723f9ab62af70c5b826d61b97130d842d224f7a594f01f970bb403f48  docs/DML-SSOT-PROD-DESIGN.md
+e7401a797dd426911dc496c141d94f44c19ded2b84e8abb60c6b71e084a2084e  docs/FACTORY_PER_FLOW_SPLIT.md
+2a86bd46c697f3dab62ece5a4ccf9882a9d0ee2d10930eae075f11d88709b3e6  docs/GIT-BRANCH-MERGE-RUNBOOK.md
+c699a248dad44d58eeb79683c888c48d4ea7cce56332b5f2b5a655fca423d0f0  docs/IMPORT_ACTIONS_20260709_122640_이후.md
+c5b252e8f28ceb54423f5875c86074ed4c62213c34cbc8360d9f5941b12d4f2c  docs/IMPORT_ACTIONS_LATEST.md
+d1cee3f0c2b0a33852348e284289683644a8a093211c2ef23644047a847956b8  docs/IMPORT_GUIDE.md
+d84ad6b0f10496635ac653f3a60ddd9aa98d6abf326d26c42dd0947ef1832d04  docs/IMPORT_PROVENANCE_VERIFY.md
+f4e224bde92af31afc861f81c548896737fa80ce747e9b2d1796bd1262fe8d4b  docs/IMPORT_READY_CHECKLIST.md
+57d84570a48feda89bc66f3869b496ec5f259dd395a7b4f719bf09d5cb32ae0f  docs/IMPORT_RUNBOOK.md
+ecf6fcbe098ab41bb3f6963ed3b2ec80c06ad39fedefc177eef1d2e89ab47f1c  docs/MIGRATION_FROM_20260703_165744.md
+638d67e64c0be83165736583ba41e8d86a4b075b19dfd4439f0e5529b33cbf10  docs/ONBOARDING_TOUR_SPEC.md
+31d6a98741710f6618eb4989316ee9646c00e47c5e29b52cee67478e4aadf2a6  docs/OPERATIONS_COMMANDS.md
+49226510a908fa729791d0a2b9cdb27b401fbe50bd912b258a0db7811e80f6a5  docs/RELEASE_NOTES_2026-08-21.md
+2023be53ca6bc4752070f4c3efe42b7535dc48f7b232f96d67c69d828300c931  docs/REMOTE_AGENT_SECURITY_DECISIONS.md
+5c6aed9bbf59c3f7ed0bd8f7e9b41ff934687404050ae4c51d2a6876e15a56ad  docs/REMOTE_SUBSYSTEM_3X_ADDENDUM.md
+79240323836394ad835ce13fab9c07681938dfe2cdfd65d0551ae05721025c2f  docs/ROLLBACK_INPUTS_B09_B11.md
+1959e7b635502af510cca64c9adebca01404dc4fef02e88e17362813c8a9e367  docs/SECRET_ENV_AND_CLEANUP.md
+44b8915d6cb6e54234775441ee773e8eceb1ed114f8ea469d98ab9f58d4b5fc4  docs/STREAMSETS_AUTOGEN_RUNBOOK.md
+e6dc711c3d1b88cd2e0716df6db18855b105f8246c11f245434159b35c244f56  docs/VERDICT_AXIS_RUNBOOK.md
+fde22f8d1c17928d99dc90aeed2fdfd4aecbd5453b10f5d39cf76ca3e467b8e4  docs/airflow-secrets.bashrc.example
+97ba10c7550460d77c5b5d255afee5dac54c3569fb01b8048b604474834ae857  docs/branch_report.sh
+51b420fe605a2fe64a213aa9f69a8e131ce3963893d360b2d9de5d86b4a036f2  docs/guide.html
+3355fbc44c3856a750e5ba820cec06eb2430d69e9ab371aeb96671efa9ba4fed  python_batch_agent/README.md
+f6458cb6d9381309301e9d5f25a451702549d2b79f4103d5f13f2aee3280b7b0  python_batch_agent/agent.py
+ede95a1b0ed74a90b92d91d82560907657f2070059c125834ad0d811933f69a2  python_batch_agent/diag_token.sh
+5ea238286fdc8dd104d0150f8ec3fe5c207a2ef15e7818cf567bef12562e11b4  python_batch_agent/diagnose.sh
+f2a56abfecb4acd438d9bba723a0bbec6719d2ff6c08ec75a98e7dd935925e98  python_batch_agent/environment.example
+967b6d344d885f8153c60d8780fdec393c6e66ffba9c9af35ba0c5eeec24f103  python_batch_agent/extract_python_batch_manifest.py
+b0380fd648311da251c61c3f2f079437de3707e7bc44e896214922be89966f13  python_batch_agent/runner.py
+a141a074eac1a4a4367dea004ae8af283659b9554405e26539564f68566cba4f  python_batch_agent/side_effect_runner.py
+dc8a43be57b0a6bd3045e7b6433c14eead1674b76a01feb54b05975994c457d0  python_batch_agent/start.sh
+3ebeb459438ea3a7750dd5bc86b48b2b4b2f9eedaeff2d1084542935198c40ae  python_batch_agent/stop.sh
+ea21c521418fbf987be62a21b8687aec3ebc51a950acfe7bf5967721567db34d  spring-batch-reference/README.md
+b3aa0b7a040e76300bb48b8e9930e3f92d7e6d2a8a28cfa59dd4c834da99de1d  spring-batch-reference/airflow-integration/AirflowBatchExecutionController.java
+43ea49a1ca5c483a5267c17266759d756671b4b1e5d7a8730870e58880289690  spring-batch-reference/airflow-integration/AirflowBatchExecutionService.java
+756504e4c9cd4006d576100056dff24b09ea048467b88fa08d8a72598162aa58  spring-batch-reference/airflow-integration/AirflowBatchListenerConfig.java
+ba97f86b5c30282394b3e85af90b5203c7304b4f16fa219ef36c730326afe8bb  spring-batch-reference/airflow-integration/AirflowBatchRunResponse.java
+6b2a9b0e9b77eee849d91a0f4652da43e07ae0294e9c80ecc139d7ca0db28960  spring-batch-reference/airflow-integration/AirflowBatchStatusResponse.java
+386e87ec34877223276051e80eb58ccbb15fd2c9f79da6407dfebe6d38063686  spring-batch-reference/airflow-integration/README.md
+ae07fae71fa6251cf4341a5b92b3b6e7c8f2a612bd4c436021421bc4cebe1bd9  spring-batch-reference/sql/dag_task_map.sql
+832819cd7b091ad4e86df77a559e5ee9ecd2b080dafc6e1949c4f4fee2b404ae  sql/seed_templates.sql
+97a0161428946174873b8ebcdf677b71cb5c150d5f92ee6ef85f359da9c25f69  airflow-bundle-20260826_112055.provenance.md
+# MEMBER-SHA256 {"bytes":2643470,"file_count":66,"kind":"directory","name":"batch-admin-reference","sha256":"0f96abd3dfbff9e7a60d553f2dd8614d4ab532d4c04b84516af242e7482f6e60"}
+# MEMBER-SHA256 {"bytes":886362,"file_count":34,"kind":"directory","name":"docs","sha256":"d0e785e7e1b69e148a49fb2b2593064c3cbdb8e20b391520dc803898666c19dc"}
+# MEMBER-SHA256 {"bytes":127443,"file_count":10,"kind":"directory","name":"python_batch_agent","sha256":"02caedffd452e1d76bc3cd7c9cf0418ef45a3a186e642fbd77bb36e59bedddfa"}
+# MEMBER-SHA256 {"bytes":48477,"file_count":8,"kind":"directory","name":"spring-batch-reference","sha256":"608ee56e799dbb6d7830746089b04cfbcb3e8fafc236ea9c11e2217ff21044ad"}
+# MEMBER-SHA256 {"bytes":19418,"file_count":1,"kind":"directory","name":"sql","sha256":"bc280b58b296f2252721ebe58cb9e120484b5a0b21300d7deca3b359a5fbbc52"}
+# TAR-MEMBER {"name":"airflow-bundle"}
+# TAR-MEMBER {"name":"airflow-bundle/README.md"}
+# TAR-MEMBER {"name":"airflow-bundle/bundle_manifest.json"}
+# TAR-MEMBER {"name":"airflow-bundle/config"}
+# TAR-MEMBER {"name":"airflow-bundle/config/catalog.d"}
+# TAR-MEMBER {"name":"airflow-bundle/config/catalog.d/README.md"}
+# TAR-MEMBER {"name":"airflow-bundle/config/catalog.d/_TEMPLATE.yaml.example"}
+# TAR-MEMBER {"name":"airflow-bundle/config/catalog.d/mvno_full_chain.yaml"}
+# TAR-MEMBER {"name":"airflow-bundle/config/catalog.d/mvno_full_chain_pybatch.yaml"}
+# TAR-MEMBER {"name":"airflow-bundle/config/catalog.d/streamsets_autogen_dispatchers.yaml"}
+# TAR-MEMBER {"name":"airflow-bundle/config/catalog.d/streamsets_dispatchers.yaml"}
+# TAR-MEMBER {"name":"airflow-bundle/config/catalog.d/watchdog_daily_flow.yaml.example"}
+# TAR-MEMBER {"name":"airflow-bundle/config/catalog.d/wireline_master_flow.yaml"}
+# TAR-MEMBER {"name":"airflow-bundle/config/catalog.d/wireline_monthly_single_flow.yaml"}
+# TAR-MEMBER {"name":"airflow-bundle/config/env_overrides"}
+# TAR-MEMBER {"name":"airflow-bundle/config/env_overrides/prd.yaml.example"}
+# TAR-MEMBER {"name":"airflow-bundle/config/image_manifest.json"}
+# TAR-MEMBER {"name":"airflow-bundle/config/pipeline_registry.yaml"}
+# TAR-MEMBER {"name":"airflow-bundle/config/streamsets_autogen_policy.json"}
+# TAR-MEMBER {"name":"airflow-bundle/config/variables.dev.json"}
+# TAR-MEMBER {"name":"airflow-bundle/config/variables.json"}
+# TAR-MEMBER {"name":"airflow-bundle/config/variables.prd.json"}
+# TAR-MEMBER {"name":"airflow-bundle/config/variables.schema.json"}
+# TAR-MEMBER {"name":"airflow-bundle/dags"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/.airflowignore"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/_scaffold"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/_scaffold/__init__.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/_scaffold/batch_job_factory.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/_scaffold/dispatcher_factory.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/_scaffold/flow_factory.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/_scaffold/python_batch_factory.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/_scaffold/window_dispatcher_factory.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/cm_ops_edit_manifest.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/cm_ops_reconcile_activation.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/cm_ops_sync_catalog_from_db.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/cm_ops_sync_python_autogen.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/cm_ops_sync_spring_autogen.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/common"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/common/__init__.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/common/activation_reconcile.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/common/airflow_compat.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/common/batch_params.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/common/batch_runtime.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/common/callbacks.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/common/catalog_from_db.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/common/catalog_schedule.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/common/catalog_writer.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/common/dag_task_map_sync.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/common/dag_task_map_trigger.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/common/datasets.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/common/defaults.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/common/env_overrides.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/common/flow_catalog_spec.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/common/helpers.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/common/manifest_edit.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/common/security_utils.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/ops_edit_catalog_schedule.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/ops_read_catalog_def.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/ops_sync_dag_task_map.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/ops_sync_streamsets_autogen.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/ops_write_catalog_def.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/streamsets"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/streamsets/__init__.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/streamsets/dispatcher_engine.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/streamsets/dynamic_dispatcher.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/streamsets/window_coordinator.py"}
+# TAR-MEMBER {"name":"airflow-bundle/dags/zz_runtime_catalogs.py"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins/__init__.py"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins/dependency_count.py"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins/hooks"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins/hooks/__init__.py"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins/hooks/sdc_pool_hook.py"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins/hooks/sdc_shell_hook.py"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins/operators"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins/operators/__init__.py"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins/operators/python_batch_operator.py"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins/operators/python_batch_remote_operator.py"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins/operators/spring_batch_operator.py"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins/operators/streamset_pool_operator.py"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins/sensors"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins/sensors/__init__.py"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins/sensors/sdc_pool_sensor.py"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins/sensors/wrk_hst_count_sensor.py"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins/timetables"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins/timetables/__init__.py"}
+# TAR-MEMBER {"name":"airflow-bundle/plugins/timetables/multi_cron_timetable.py"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/_pyenv.sh"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/assign_tmp_pools.py"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/batch_admin_rollback_preflight.sh"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/build_guide_html.py"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/bundle_provenance.py"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/clean_dag_history.sh"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/collect_import_diag.sh"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/deploy.sh"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/detect_composition_conflicts.py"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/diagnose.sh"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/diagnose_pybatch_callables.py"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/extract_python_batch_manifest.py"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/extract_streamsets_crontab.py"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/generate_manifest.sh"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/generate_spring_batch_catalog.py"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/import_variables.sh"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/materialize_catalog_def.py"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/materialize_schedule.py"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/package.sh"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/package_hygiene_gate.sh"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/reconcile_chain_ownership.py"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/regression_check.py"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/rollback.sh"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/scaffold_flow.py"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/scaffold_loaders.py"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/setup_ssh_key.sh"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/suggest_lineage_gates.py"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/sync_dag_task_map.py"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/sync_remote_manifests.py"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/validate_catalog.py"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/verify_bundle.sh"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/verify_bundle_provenance.sh"}
+# TAR-MEMBER {"name":"airflow-bundle/scripts/verify_variables.py"}
