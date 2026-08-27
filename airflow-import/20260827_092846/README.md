@@ -33,8 +33,12 @@ Airflow 버전과 다르면 배포가 거부된다.** 각 번들의 `airflow-bun
 1. `batch-admin-reference/sql/airflow_control_ddl.sql` 재적용 — 멱등 ALTER
 2. `sql/seed_templates.sql` 재적용 — **두 종류를 심는다. 둘 다 확인할 것**
    - 흐름 템플릿 **15종**
-   - 파라미터 템플릿 **11종** (`{{ TODAY }}`·`{{ YESTERDAY }}`·`{{ 1,2,3,7,30_DAYS_AGO }}`·
-     `{{ MONTH_FIRST }}`·`{{ MONTH_LAST }}`·`{{ PREV_MONTH_FIRST }}`·`{{ PREV_MONTH_LAST }}`)
+   - 파라미터 템플릿 **11종**: `{{ TODAY }}`(당일) · `{{ YESTERDAY }}`(전일) ·
+     `{{ 2_DAYS_AGO }}`(전전일) · `{{ 3_DAYS_AGO }}` · `{{ 7_DAYS_AGO }}`(1주일 전) ·
+     `{{ 30_DAYS_AGO }}` · `{{ MONTH_FIRST }}`(당월 첫날) · `{{ MONTH_LAST }}`(당월 마지막 날) ·
+     `{{ 1_MONTHS_AGO:%Y%m }}`(전월) · `{{ PREV_MONTH_FIRST }}`(전월 첫날) ·
+     `{{ PREV_MONTH_LAST }}`(전월 마지막 날)
+     ※ `{{ 1_DAYS_AGO }}` 는 별도 항목이 아니라 `{{ YESTERDAY }}` 와 같은 값이다.
    - 15종만 보고 넘어가면 "전일/전월이 파라미터 목록에 안 뜬다"는 지적이 그대로 재발한다
 
 개발기 3.2.1 설치 절차는 번들 안 `docs/migration/DEV_INSTALL_321_CHECKLIST.md` 참조.
