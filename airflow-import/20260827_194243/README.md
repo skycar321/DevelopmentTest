@@ -13,6 +13,20 @@ shasum -a 256 -c SHA256SUMS.txt
 - `airflow-bundle-airflow-3.2.1-20260827_194247.7z`
   - SHA-256: `caf0af91417e255fe99b024e251d9c5fd57a25c55e9747853be997011ed09f02`
 
+### 해제
+
+설치할 Airflow target 의 archive 를 해제합니다. **비밀번호는 이 파일에 없습니다** — 반입 담당자에게 별도로 전달됩니다.
+
+```bash
+7z x airflow-bundle-airflow-2.6.3-20260827_194243.7z        # 비밀번호 입력
+7z x airflow-bundle-airflow-3.2.1-20260827_194247.7z        # 비밀번호 입력
+
+# 위 명령이 풀어낸 tar 를 다시 해제하면 airflow-bundle/ 이 나옵니다.
+tar -zxvf airflow-bundle-airflow-<target>.tar.gz
+```
+
+해제 결과는 `airflow-bundle/`(dags·plugins·config·scripts)과 같은 레벨의 참조 디렉터리(`docs/`, `batch-admin-reference/`, `sql/` 등)입니다.
+
 ## 2. 배치어드민 반영
 
 선택한 Airflow target archive를 전체 해제한 뒤 `batch-admin-reference/src/**`, `mapper/`,
