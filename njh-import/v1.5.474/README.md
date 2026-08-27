@@ -43,6 +43,20 @@ echo "검사 완료"
 - `sha256sum`이 없는 환경에서는 `shasum -a 256`으로 바꿔 실행하세요.
 - Windows 노트북은 Git Bash에서 실행합니다.
 
+**어느 모델이 손상됐는지 확인**: 위 검사는 blob 파일명만 알려줍니다. 그 blob을 쓰는
+모델 이름은 manifest에서 역추적합니다. 손상 해시를 `sha256-` 접두사 없이 넣으세요.
+
+```bash
+MODELS="${OLLAMA_MODELS:-$HOME/.ollama/models}"
+for d in <손상해시1> <손상해시2>; do
+  echo "== $d"
+  grep -rl "$d" "$MODELS/manifests" 2>/dev/null | sed "s|.*/library/||; s|/|:|"
+done
+```
+
+출력되는 `모델명:태그`가 다시 반입해야 할 대상입니다. blob은 모델 간에 공유될 수 있으므로
+하나의 손상 blob이 여러 모델을 동시에 망가뜨릴 수 있습니다.
+
 **손상이 나온 경우**: 해당 모델을 제거하고 다시 반입합니다. `import-model-store.sh`는 기존
 파일을 덮어쓰지 않고 병합하므로, 손상된 blob을 먼저 지워야 새로 복사됩니다.
 
