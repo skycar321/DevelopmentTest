@@ -1,48 +1,60 @@
 # njh-import v1.5.479 — Nexus 라이브러리 조사 킷
 
-사내 Nexus 저장소에 어떤 라이브러리가 실제로 제공되는지 조사하는 스크립트입니다.
+사내 Nexus 에 Vue3 전환에 필요한 패키지가 실제로 있는지 조사하는 스크립트입니다.
 전체 njh-cli 배포본이 아니라 **조사 스크립트만** 담은 경량 킷입니다.
 
 ## 담긴 것
 
-| 경로 | 설명 |
+| 파일 | 용도 |
 |---|---|
-| `nexus-조사/nexus-라이브러리-조사.ps1` | 조사 스크립트 (PowerShell) |
-| `nexus-조사/nexus-라이브러리-조사.md` | 결과 판정 읽는 법 (hosted/proxy 구분 등) |
+| `nexus-조사/nexus-라이브러리-조사.ps1` | PowerShell 진입점 (Windows) |
+| `nexus-조사/nexus-라이브러리-조사.sh` | Git Bash / macOS / Linux 진입점 |
+| `nexus-조사/nexus-라이브러리-조사.md` | 사용법 · 결과 판정 · 문제 해결 |
 
-## 사용법
+두 진입점은 **같은 조사 로직**을 공유하므로 어느 쪽으로 돌려도 같은 형식의 결과가 나옵니다.
+`node` 와 `curl` 이 필요합니다(둘 다 개발 PC 에 이미 있습니다).
 
-1. 아래 SHA-256 을 대조해 파일이 온전한지 먼저 확인합니다.
-2. 7z 을 해제합니다. **암호는 별도 채널로 전달**되며 이 저장소에는 없습니다.
-3. `nexus-라이브러리-조사.md` 를 먼저 읽고 나서 `.ps1` 을 실행합니다.
-4. 산출된 결과 txt 를 회신해 주시면 반입 요청 목록으로 환산합니다.
-
-## 무결성
-
-`SHA256SUMS.txt` 참조. 다운로드 후 대조:
+## 실행
 
 ```powershell
-Get-FileHash .\njh-nexus-survey-v1.5.479.7z -Algorithm SHA256
+powershell -ExecutionPolicy Bypass -File .\nexus-라이브러리-조사.ps1 `
+  -NexusUrl "<Nexus 주소>" -ProjectPath "<프로젝트 경로>"
 ```
 
 ```bash
-shasum -a 256 njh-nexus-survey-v1.5.479.7z
+sh ./nexus-라이브러리-조사.sh --nexus-url "<Nexus 주소>" --project-path "<프로젝트 경로>"
 ```
 
-## 실행이 안 될 때
+결과는 `nexus-라이브러리-조사-결과.txt` 로 저장됩니다. **이 파일 하나만 전달**하시면 됩니다.
+토큰·비밀번호는 기록되지 않습니다.
 
-**증상**: `powershell -ExecutionPolicy Bypass -File .\nexus-라이브러리-조사.ps1` 실행 시
-`식 또는 문에서 예기치 않은 ')' 토큰입니다` / `UnexpectedToken` 파서 에러가 쏟아지고,
-에러 본문의 한글이 `"?끊땋??"` 처럼 깨져 보임.
+## 조회가 안 될 때 (TLS 인증서)
 
-**원인**: Windows PowerShell 5.1 은 BOM 없는 `.ps1` 을 시스템 ANSI 코드페이지(한국어 Windows = CP949)
-로 읽습니다. 한글 문자열 리터럴이 깨지면서 따옴표 짝이 어긋나 파서가 무너집니다.
+`curl` 이 `000` 을 뱉거나 REST 조회가 실패하면 대개 **서버가 아니라 PC 의 인증서 신뢰** 문제입니다.
+Git Bash 의 curl 은 자체 CA 번들을 쓰므로, 사내 루트 CA 가 Windows 저장소에만 있으면
+npm·Maven 은 되는데 이 도구만 실패할 수 있습니다.
 
-**해결**: 이 아카이브의 스크립트는 **UTF-8 BOM** 으로 저장되어 있어 5.1 에서도 정상 동작합니다.
-이전에 받으신 파일에서 위 에러가 났다면 **이 버전으로 다시 받아** 실행해 주세요.
+```powershell
+# 1) 원인 확인 (1회만 — 이 상태로 두지 마십시오)
+... -InsecureDiagnostic
 
-대안으로 `pwsh`(PowerShell 7) 가 설치돼 있다면 인코딩과 무관하게 동작합니다:
-
+# 2) 영구 해법 — 사내 루트 CA 지정
+... -CaBundle corp-ca.pem
 ```
-pwsh -File .\nexus-라이브러리-조사.ps1 -NexusUrl "<주소>" -ProjectPath "<프로젝트경로>"
+
+CA 추출과 고정 방법은 동봉된 `.md` 에 있습니다.
+
+## 이 도구가 하지 않는 것
+
+- 지정하신 주소가 응답하지 않으면 **다른 주소로 갈아타지 않고 중단**합니다.
+- 공용 레지스트리(`registry.npmjs.org` 등)는 Nexus 가 아니므로 조사 대상에서 제외합니다.
+- 조회에 실패하면 패키지 판정·차단 목록·hosted 분류를 **하나도 만들지 않습니다.**
+  도달하지 못한 상태에서 만든 목록은 사실이 아니기 때문입니다.
+
+## 무결성
+
+`SHA256SUMS.txt` 참조. 7z 암호는 **별도 채널**로 전달되며 이 저장소에는 없습니다.
+
+```powershell
+Get-FileHash .\njh-nexus-survey-v1.5.479.7z -Algorithm SHA256
 ```
