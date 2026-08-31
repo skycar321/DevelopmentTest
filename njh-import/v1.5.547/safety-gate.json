@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "report": "/Users/nam64/njh-kits/package-pickup-2026-09-01-v1.5.547-8c97f27c534bc11487ba8c83ad83d22e1f6c6daa/package-build-evidence.md",
+  "package_directory": "/Users/nam64/njh-kits/package-pickup-2026-09-01-v1.5.547-8c97f27c534bc11487ba8c83ad83d22e1f6c6daa",
+  "version": "1.5.547",
+  "packages": [
+    {
+      "kind": "cli",
+      "status": "pass",
+      "artifact": "njh-cli-v1.5.547.7z",
+      "version": "1.5.547",
+      "expected_sha256": "f8bbc4789eaeff3246cb41ae18f19da250b64be03cd25725c55d2221b580775d",
+      "actual_sha256": "f8bbc4789eaeff3246cb41ae18f19da250b64be03cd25725c55d2221b580775d",
+      "expected_bytes": 19825826,
+      "actual_bytes": 19825826,
+      "version_markers": {
+        "dist/njh-cli.js": "1.5.547"
+      },
+      "scanned_text_files": 429,
+      "scanned_text_bytes": 9104594,
+      "scanned_binary_files": 26,
+      "leak_hits": 0
+    },
+    {
+      "kind": "gateway",
+      "status": "pass",
+      "artifact": "njh-gateway-v1.5.547.7z",
+      "version": "1.5.547",
+      "expected_sha256": "18d48b54503bd32dc39e27f1cec8c42f3bb3256533f4f0338a367ebe9e7ef5be",
+      "actual_sha256": "18d48b54503bd32dc39e27f1cec8c42f3bb3256533f4f0338a367ebe9e7ef5be",
+      "expected_bytes": 89131427,
+      "actual_bytes": 89131427,
+      "version_markers": {
+        "runtime/njh-cli.js": "1.5.547",
+        "runtime/njh-gateway.js": "1.5.547"
+      },
+      "scanned_text_files": 172,
+      "scanned_text_bytes": 10947726,
+      "scanned_binary_files": 7,
+      "leak_hits": 0
+    },
+    {
+      "kind": "win-laptop",
+      "status": "pass",
+      "artifact": "njh-win-laptop-v1.5.547.7z",
+      "version": "1.5.547",
+      "expected_sha256": "bea6c9739f8a69ba44d485d3b4223670f6d2d0aabb40016050adbd1bf708e4c3",
+      "actual_sha256": "bea6c9739f8a69ba44d485d3b4223670f6d2d0aabb40016050adbd1bf708e4c3",
+      "expected_bytes": 1923664,
+      "actual_bytes": 1923664,
+      "version_markers": {
+        "njh-cli.js": "1.5.547"
+      },
+      "scanned_text_files": 22,
+      "scanned_text_bytes": 3448318,
+      "scanned_binary_files": 0,
+      "leak_hits": 0
+    }
+  ]
+}
