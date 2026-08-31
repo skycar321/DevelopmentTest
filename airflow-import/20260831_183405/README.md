@@ -1,13 +1,13 @@
-# Encrypted Airflow release 20260831_180024
+# Encrypted Airflow release 20260831_183405
 
 ## Archives
 
-- `airflow-bundle-airflow-2.6.3-20260831_180024.7z`
-  - SHA-256: `177d0d223da2f98e6af6d438701e7c99560a42df321479ff664bba825249058b`
+- `airflow-bundle-airflow-2.6.3-20260831_183405.7z`
+  - SHA-256: `a7890b77e5661a51f442b08fceee3b0162f6430b973e1b5a5c33acefeffcb437`
   - Provenance: `provenance-airflow-2.6.3.md`
-- `airflow-bundle-airflow-3.2.1-20260831_180024.7z`
-  - SHA-256: `23e75ca4f6feb6fc966e41e71bf242a961030f7cd35a8c7c2400c72aaf893c3f`
-  - Provenance: `provenance-airflow-3.2.1.md`
+- `airflow-bundle-airflow-3.2.0-20260831_183405.7z`
+  - SHA-256: `9d512e806ece1178d24514b3268cd3f952c68b9560299783d2a1ef372bc1b681`
+  - Provenance: `provenance-airflow-3.2.0.md`
 
 ## Verify
 
@@ -29,14 +29,14 @@ The following block reads the runtime and extracts only its matching archive.
 AIRFLOW_RUNTIME_VERSION="$(sudo podman exec --user airflow "$AIRFLOW_SCHEDULER_CONTAINER" airflow version)"
 case "$AIRFLOW_RUNTIME_VERSION" in
   2.6.3)
-    7z x airflow-bundle-airflow-2.6.3-20260831_180024.7z
+    7z x airflow-bundle-airflow-2.6.3-20260831_183405.7z
     test -f airflow-bundle-airflow-2.6.3.tar.gz || { echo "ERROR: target tar is missing: airflow-bundle-airflow-2.6.3.tar.gz" >&2; exit 1; }
     tar -zxvf airflow-bundle-airflow-2.6.3.tar.gz
     ;;
-  3.2.1)
-    7z x airflow-bundle-airflow-3.2.1-20260831_180024.7z
-    test -f airflow-bundle-airflow-3.2.1.tar.gz || { echo "ERROR: target tar is missing: airflow-bundle-airflow-3.2.1.tar.gz" >&2; exit 1; }
-    tar -zxvf airflow-bundle-airflow-3.2.1.tar.gz
+  3.2.0)
+    7z x airflow-bundle-airflow-3.2.0-20260831_183405.7z
+    test -f airflow-bundle-airflow-3.2.0.tar.gz || { echo "ERROR: target tar is missing: airflow-bundle-airflow-3.2.0.tar.gz" >&2; exit 1; }
+    tar -zxvf airflow-bundle-airflow-3.2.0.tar.gz
     ;;
   *) echo "ERROR: unsupported Airflow runtime: $AIRFLOW_RUNTIME_VERSION" >&2; exit 1 ;;
 esac
