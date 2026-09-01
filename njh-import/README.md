@@ -2,7 +2,7 @@
 
 ## Choose a directory
 
-**New recipient:** open [`v1.5.547/`](./v1.5.547/) only. Read its
+**New recipient:** open [`v1.5.548/`](./v1.5.548/) only. Read its
 `README.md` before verifying, extracting, or installing any archive.
 
 Do not select `v1.5.314/` or `v1.5.316/` for a new import. They are retained
@@ -13,7 +13,8 @@ applies to the package they already received.
 | --- | --- | --- |
 | `v1.5.314/` | Reading its superseded notice for an existing recipient. | A new import or installation. |
 | `v1.5.316/` | Reading its superseded notice for an existing recipient. | A new import or installation. |
-| `v1.5.547/` | The current new-recipient entry point (2026-09-01 cut, source 16a7b083fb): cli, gateway, win-laptop, ollama-cpu runtime, ocr engine, build manifests, SHA-256 manifest. | Treating package, install, or connection checks as proof of general model-task correctness. |
+| `v1.5.548/` | The current new-recipient entry point (2026-09-01 cut): v1.5.547 plus CAPACITY REFUSE handling guidance in the install and first-30-minutes documents; same archive set. | Treating package, install, or connection checks as proof of general model-task correctness. |
+| `v1.5.547/` | A superseded delivery retained for its existing recipients. | Treating package, install, or connection checks as proof of general model-task correctness. |
 | `v1.5.321/` | A superseded delivery retained for its existing recipients. | Treating package, install, or connection checks as proof of general model-task correctness. |
 
 If you already received a directory, start with the notice or erratum in that
