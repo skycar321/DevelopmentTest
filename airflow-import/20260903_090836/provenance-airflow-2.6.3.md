@@ -1,0 +1,18 @@
+# Public archive provenance
+
+format_version: B02-B04-v2
+archive: airflow-bundle-airflow-2.6.3-20260903_090836.7z
+archive_bytes: 1374161
+archive_sha256: 3164f453efa3deb487e7daf1ebf35c65e42b3e6a4d33d161e6e54635edc3e034
+source_git_commit: ea79fde6a00ae0e7f3a479ef9f37b59d796ff8cd
+manifest_source_git_commit: ea79fde6a00ae0e7f3a479ef9f37b59d796ff8cd
+airflow_target_version: 2.6.3
+payload_source_file_count: 126
+payload_packaged_file_count: 126
+payload_diff_count: 0
+payload_diff_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+payload_comparison: PASS
+tar_member_count: 127
+tar_sha256: 88eab3512005b2f96ebb07b20d4c933f26a45befaa793fd7f127833c14b9cfea
+tar_members_sha256: 45f7cab934d0e8220a878672402df6180ed51e9647a54599405bb5e74975e493
+new_extraction_verification: PASS
