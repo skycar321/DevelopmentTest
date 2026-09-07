@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "kind": "recipient-original-v1-semantic-oracle-cohort-receipt",
+  "contract_id": "recipient-config-merge-original-v1",
+  "verdict": "FAIL",
+  "prompt": {
+    "expected_sha256": "12c12b348390ff9a09f34717ccde750c399c3a0706a86ca0a1406e1ee15bf8aa",
+    "observed_sha256": "12c12b348390ff9a09f34717ccde750c399c3a0706a86ca0a1406e1ee15bf8aa"
+  },
+  "source": {
+    "expected_sha256": "82dce25307b07a8b567a39fcb79002c83b17239accac9eed51dd0a33ea8289ca",
+    "observed_sha256": "82dce25307b07a8b567a39fcb79002c83b17239accac9eed51dd0a33ea8289ca"
+  },
+  "expected_output": {
+    "expected_sha256": "143e88d3cab363fb1039d2632f5fd49be567977e8f3698ae7af3f68601eafe9c",
+    "observed_sha256": "143e88d3cab363fb1039d2632f5fd49be567977e8f3698ae7af3f68601eafe9c"
+  },
+  "raw_response_evidence": {
+    "path": "reports/recipient-original-task-model-reliability-2026-08-11.json",
+    "sha256": "31b343e2b18156cf6473a3dbab925cda5a4fc0228bbbcbaacfc01291863d8875"
+  },
+  "invocation_provenance": {
+    "complete": false,
+    "bundle_sha256": [
+      "not-recorded"
+    ],
+    "model_digests": [
+      "not-recorded"
+    ],
+    "seeds": [
+      "not-recorded"
+    ],
+    "decoder_options_sha256": [
+      "not-recorded"
+    ],
+    "run_ids": [
+      "not-recorded"
+    ]
+  },
+  "attribution": "model-earned",
+  "cohort": {
+    "required_runs": 40,
+    "completed_runs": 40,
+    "strict_passes": 0,
+    "semantic_passes": 0,
+    "models": [
+      "qwen2.5-coder:7b",
+      "qwen3-coder:30b"
+    ],
+    "pass_bar": {
+      "metric": "semantic_equivalence",
+      "minimum": 40,
+      "rule": "all 40 predeclared model-earned runs must pass semantic equivalence before any model can become eligible"
+    }
+  },
+  "mismatch_paths": [
+    "$.connection.headers.x-trace",
+    "$.models",
+    "$.retry.backoffMs"
+  ],
+  "readiness_eligible": false,
+  "readiness_reason": "The historical 40-run evidence is a model-earned failure with no complete invocation provenance and zero semantic passes; it remains known_failure."
+}
