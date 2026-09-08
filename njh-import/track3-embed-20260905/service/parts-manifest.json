@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "kind": "service",
+  "sourceCommit": "0e39fa48a2d60ebac26617807c8655fb440e81cb",
+  "source": {
+    "name": "njh-track3-service.tar.gz",
+    "sha256": "7325b03dd2126726bfc929ff446c7d91d476fd50880eed05d99ab409de5feeae",
+    "bytes": 33767112
+  },
+  "partCount": 1,
+  "totalBytes": 33767363,
+  "maxPartBytes": 90000000,
+  "parts": [
+    {
+      "name": "njh-track3-service.7z.001",
+      "sha256": "37826dd20c3b729b70bc2efb96a5186ce53355f9a37d6cd1dad1f7b43f820a46",
+      "bytes": 33767363
+    }
+  ]
+}
