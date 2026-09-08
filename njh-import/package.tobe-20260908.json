@@ -1,0 +1,154 @@
+{
+  "name": "vue-vuetify-sample",
+  "version": "1.0.0",
+  "private": true,
+  "pendingNexus": {
+    "moment@2.30.1": "NEXUS-RECHECK.md#moment-2301-required-by-existing-date-consumers"
+  },
+  "disabledDependencies": {
+    "browserslist": {
+      "previousSection": "dependencies",
+      "previousSpecifier": "^4.16.3",
+      "category": "build-time concern misplaced in runtime",
+      "reason": "No source/config consumer on the Vite baseline; target-selection tooling is not application runtime.",
+      "disabledOn": "2026-09-07",
+      "proof": "analysis/phase1/dependencies-before.json; scripts/phase1/dependencies.test.mjs"
+    },
+    "caniuse-lite": {
+      "previousSection": "dependencies",
+      "previousSpecifier": "^1.0.30001204",
+      "category": "build-time concern misplaced in runtime",
+      "reason": "No direct compatibility-data consumer; not needed as an application runtime declaration.",
+      "disabledOn": "2026-09-07",
+      "proof": "analysis/phase1/dependencies-before.json; scripts/phase1/dependencies.test.mjs"
+    },
+    "core-js": {
+      "previousSection": "dependencies",
+      "previousSpecifier": "^3.9.1",
+      "category": "build-time concern misplaced in runtime",
+      "reason": "No application polyfill import or Babel injection on this native Vue 3/Vite baseline. This package is a runtime polyfill when used, not inherently build-only; canvg still requires a transitive copy.",
+      "disabledOn": "2026-09-07",
+      "proof": "analysis/phase1/dependencies-before.json; scripts/phase1/dependencies.test.mjs"
+    },
+    "dom-to-image": {
+      "previousSection": "dependencies",
+      "previousSpecifier": "^2.6.0",
+      "category": "unused browser library",
+      "reason": "No executable import, require, dynamic import, stylesheet or HTML consumer.",
+      "disabledOn": "2026-09-07",
+      "proof": "analysis/phase1/dependencies-before.json; scripts/phase1/dependencies.test.mjs"
+    },
+    "express-mysql-session": {
+      "previousSection": "dependencies",
+      "previousSpecifier": "^2.1.6",
+      "category": "browser category error: Node server session storage",
+      "reason": "No executable consumer; MySQL-backed Express session storage belongs on the server, not this browser app.",
+      "disabledOn": "2026-09-07",
+      "proof": "analysis/phase1/dependencies-before.json; scripts/phase1/dependencies.test.mjs"
+    },
+    "express-session": {
+      "previousSection": "dependencies",
+      "previousSpecifier": "^1.17.2",
+      "category": "browser category error: Node server middleware",
+      "reason": "No executable consumer; Express server session middleware is not browser application code.",
+      "disabledOn": "2026-09-07",
+      "proof": "analysis/phase1/dependencies-before.json; scripts/phase1/dependencies.test.mjs"
+    },
+    "jsonwebtoken": {
+      "previousSection": "dependencies",
+      "previousSpecifier": "^8.5.1",
+      "category": "browser category error: server crypto/token signing",
+      "reason": "No executable consumer; this app does not perform token signing/verification through this Node-oriented package.",
+      "disabledOn": "2026-09-07",
+      "proof": "analysis/phase1/dependencies-before.json; scripts/phase1/dependencies.test.mjs"
+    },
+    "sheetjs-style": {
+      "previousSection": "dependencies",
+      "previousSpecifier": "^0.15.8",
+      "category": "unused spreadsheet library",
+      "reason": "No executable consumer; retained xlsx and xlsx-js-style have actual consumers. Other spreadsheet declarations are audited separately.",
+      "disabledOn": "2026-09-07",
+      "proof": "analysis/phase1/dependencies-before.json; scripts/phase1/dependencies.test.mjs"
+    },
+    "sass": {
+      "previousSection": "devDependencies",
+      "previousSpecifier": "^1.32.8",
+      "category": "unused development dependency",
+      "reason": "No .sass/.scss source, SFC preprocessing, or Vite preprocessor config. Vuetify styles resolve to precompiled main.css; build-warning regex mentions do not load Sass.",
+      "disabledOn": "2026-09-07",
+      "proof": "analysis/phase1/dev-dependencies.json; scripts/phase1/dependencies.test.mjs"
+    },
+    "@types/cookie": {
+      "previousSection": "devDependencies",
+      "previousSpecifier": "0.4.1",
+      "category": "unused development dependency",
+      "reason": "No cookie module/type consumers; tsconfig types explicitly includes only vite/client. The cookie adapter is handwritten.",
+      "disabledOn": "2026-09-07",
+      "proof": "analysis/phase1/dev-dependencies.json; scripts/phase1/dependencies.test.mjs",
+      "originalRuntimeSpecifier": "^0.4.1"
+    }
+  },
+  "platformPrerequisites": {
+    "node": {
+      "range": "^20.19.0 || >=22.12.0",
+      "enginesField": "done",
+      "inHouseVerification": "unverified",
+      "proof": "package.json engines; package-lock.json node_modules/vite engines"
+    },
+    "restoreDisabledDependency": "Copy previousSpecifier into previousSection when a real importer, CLI or plugin use is added; run the dependency gate and regenerate package-lock.json. Records retain the reversible history."
+  },
+  "scripts": {
+    "serve": "vite --host 127.0.0.1 --port 8081",
+    "build": "vite build",
+    "lint": "eslint src",
+    "test": "mocha  test --reporter mocha-junit-reporter",
+    "typecheck": "vue-tsc --noEmit",
+    "lint:report": "node scripts/eslint-baseline-report.mjs"
+  },
+  "dependencies": {
+    "ag-grid-community": "31.3.4",
+    "ag-grid-enterprise": "31.3.4",
+    "ag-grid-vue3": "31.3.4",
+    "axios": "1.20.0",
+    "chart.js": "4.4.9",
+    "dayjs": "^1.10.4",
+    "es6-promise": "^4.2.8",
+    "html2pdf.js": "^0.10.1",
+    "moment": "2.30.1",
+    "nprogress": "^0.2.0",
+    "numeral": "^2.0.6",
+    "pinia": "4.0.3",
+    "pinia-plugin-persistedstate": "4.7.1",
+    "qs": "6.15.3",
+    "sweetalert2": "11.4.4",
+    "vue": "3.5.39",
+    "vue-chartjs": "5.3.2",
+    "vue-router": "4.5.1",
+    "vuetify": "4.1.12",
+    "xlsx": "^0.16.9",
+    "xlsx-js-style": "^1.0.0",
+    "xlsx-style": "^0.8.13"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "@mdi/font": "^5.9.55",
+    "@vitejs/plugin-vue": "6.0.8",
+    "@vue/compiler-sfc": "3.5.39",
+    "eslint": "9.39.5",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-import-x": "4.17.1",
+    "eslint-plugin-vue": "10.11.0",
+    "globals": "17.12.0",
+    "mocha": "^7.1.1",
+    "mocha-junit-reporter": "^1.23.3",
+    "prettier": "^1.19.1",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.69.0",
+    "vite": "8.2.2",
+    "vue-eslint-parser": "10.4.1",
+    "vue-tsc": "3.3.11"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  }
+}
