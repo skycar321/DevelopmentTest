@@ -12,6 +12,7 @@ a `sha256.txt` and a README. Verify with `sha256.txt`, extract with `7z x -p`, t
 Newest last.
 
 - [vue3-draft-kit-20260909/](./vue3-draft-kit-20260909/) — `vue3-draft-kit-20260909.7z`
+- [vue3-draft-kit-20260909-10/](./vue3-draft-kit-20260909-10/) — `vue3-draft-kit-20260909-10.7z`
 - [vue3-draft-kit-20260909-2/](./vue3-draft-kit-20260909-2/) — `vue3-draft-kit-20260909-2.7z`
 - [vue3-draft-kit-20260909-3/](./vue3-draft-kit-20260909-3/) — `vue3-draft-kit-20260909-3.7z`
 - [vue3-draft-kit-20260909-4/](./vue3-draft-kit-20260909-4/) — `vue3-draft-kit-20260909-4.7z`
