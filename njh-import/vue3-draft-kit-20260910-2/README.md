@@ -35,3 +35,17 @@ node -v; npm -v
 sed -n 's/^registry=//p' .npmrc
 ls node_modules | wc -l
 git status --short | wc -l
+
+
+
+
+
+git remote -v
+git config --get credential.helper
+git config --get-regexp '^url\.' ; echo "(빈 출력이면 url 치환 없음)"
+ls ~/.ssh/*.pub 2>/dev/null || echo "SSH 키 없음"
+cat .npmrc 2>/dev/null; echo "--- 위가 프로젝트 .npmrc"
+cat ~/.npmrc 2>/dev/null; echo "--- 위가 사용자 .npmrc"
+npm config get registry
+git log --oneline -1 dev
+git rev-parse --abbrev-ref HEAD
