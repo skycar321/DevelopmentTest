@@ -50,3 +50,22 @@ git init -q && git add -A && git commit -q -m "draft baseline"
 `~/.vue3-draft/` 의 `repair-build.log` · `ai-repair.md` · `draft-facts.md` ·
 `route-sweep.md` · `화면-담당자-배정.md`, 그리고 `git -C "$DRAFT" diff` 출력.
 로그인 세션은 보내지 않는다.
+
+
+
+
+
+
+
+
+
+
+1. 잃지 않게 커밋만 해 두십시오. 최종 기준선으로 삼자는 게 아니라 보험입니다.
+
+cd "$DRAFT"
+printf 'node_modules/\ndist/\n' > .gitignore
+git init -q && git add -A && git commit -q -m "checkpoint: AI 수동 보수 (재생성 시 버릴 것)"
+
+2. 거부 사유 한 줄 — 이게 없으면 재실행이 도박입니다.
+
+node -e 'const d=JSON.parse(require("fs").readFileSync(process.argv[1],"utf8"));console.log(d.status,"|",d.failure,"|",JSON.stringify(d.plan||null).slice(0,300))' "$STATE/draft-stdout.json"
