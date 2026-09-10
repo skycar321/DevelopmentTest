@@ -77,3 +77,43 @@ printf '.njh/\n.tmp/\n' >> "$V3/.gitignore"
 git -C "$V3" add .gitignore
 git -C "$V3" commit -m "chore: 에이전트 작업 부스러기(.njh/.tmp) 추적 제외"
 git -C "$V3" push
+
+
+
+
+
+
+
+
+
+
+import { fileURLToPath, URL } from "node:url";
+import { defineConfig, loadEnv } from "vite";
+import vue from "@vitejs/plugin-vue";
+
+// Vue CLI 는 `process.env.VUE_APP_*` 를 빌드 시점에 치환해 줬다. Vite 에는 브라우저 `process`
+// 가 없어 ReferenceError 가 나고 앱이 마운트되지 못한다. 설정 시점에 .env 를 읽어
+// 해당 이름들만 리터럴로 박아 넣는다 — 소스는 한 글자도 고치지 않는다.
+const ENV_PREFIXES = ["VITE_", "VUE_APP_", "BRMS_APP_"];
+
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), ENV_PREFIXES);
+  return {
+    plugins: [vue({ template: { transformAssetUrls: { includeAbsolute: false } } })],
+    resolve: { alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) } },
+    envPrefix: ENV_PREFIXES,
+    define: {
+      ...Object.fromEntries(
+        Object.entries(env).map(([key, value]) => [`process.env.${key}`, JSON.stringify(value)]),
+      ),
+      // 위 목록에 없는 이름을 읽어도 죽지 않게 한다(undefined 로 평가된다).
+      "process.env": "({})",
+    },
+    server: { host: "127.0.0.1", strictPort: true },
+  };
+});
+
+
+
+
+ls -a "$V3" | grep '^\.env'; cat "$V3/.env.test"
