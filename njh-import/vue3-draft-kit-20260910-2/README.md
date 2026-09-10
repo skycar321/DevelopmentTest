@@ -21,3 +21,17 @@ install the matching client kit, regenerate the library decision sheet, prepare 
 
 Contents (high level): the migration skill bundle at the lab integration tip named in `delivery-line.json`, the library decision documents,
 the A/B dual-runtime procedure, the draft gap-report tool, and reference analysis lists.
+
+
+
+
+
+
+
+cd /c/work/ui-web          # as-is 실제 경로로 바꾸세요
+git fetch origin --prune && git rev-parse --short origin/dev
+node -p "const p=require('./package.json');JSON.stringify({name:p.name,vue:p.dependencies.vue,vuetify:p.dependencies.vuetify,scripts:p.scripts,extra:['optionalDependencies','peerDependencies','overrides','resolutions'].filter(k=>p[k])},null,1)"
+node -v; npm -v
+sed -n 's/^registry=//p' .npmrc
+ls node_modules | wc -l
+git status --short | wc -l
