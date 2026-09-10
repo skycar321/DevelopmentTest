@@ -44,3 +44,40 @@ Contents (high level): the migration skill bundle at the lab integration tip nam
 source env.sh
 grep -B1 -A3 "error during build" "$DRAFT/analysis/draft-project/build.stderr" | head -40
 node -e 'const d=JSON.parse(require("fs").readFileSync(process.argv[1],"utf8"));const l=d.screens||[];const by={};for(const s of l)for(const r of(s.refusals||[])){const k=String(r.reason||r.code).slice(0,60);by[k]=(by[k]||0)+1}console.log(Object.entries(by).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([k,v])=>v+"  "+k).join("\n"));console.log("skipped:",l.filter(s=>s.status==="skipped").map(s=>s.file).join(", "))' "$DRAFT/analysis/draft-project/result.json"
+
+
+
+
+
+
+
+
+
+
+source env.sh
+node -e '
+const d=JSON.parse(require("fs").readFileSync(process.argv[1],"utf8"));
+for(const s of (d.screens||[])) for(const r of (s.refusals||[]))
+  if(/generated-sfc-invalid|unsupported-sfc-shape|SFC_PARSE_ERROR/.test(String(r.reason||r.code)))
+    console.log(String(r.reason||r.code).slice(0,90), "  <-", s.file);
+' "$DRAFT/analysis/draft-project/result.json"
+
+그리고 CSS 쪽도 사내에 같은 문제가 몇 개나 있는지 미리 알면 좋습니다. 3차 수정이 그걸 다 덮는지 판단할 수 있습니다.
+
+node -e '
+const fs=require("fs"),path=require("path"),root=process.argv[1];
+const walk=(d,a=[])=>{for(const e of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,e.name);
+ if(e.isDirectory()){if(!["node_modules",".git","dist"].includes(e.name))walk(p,a)}else if(/\.(vue|css)$/.test(e.name))a.push(p)}return a};
+let n=0;
+for(const f of walk(path.join(root,"src")).concat(fs.existsSync(path.join(root,"public"))?walk(path.join(root,"public")):[])){
+ const s=fs.readFileSync(f,"utf8");
+ const css=f.endsWith(".css")?s:(s.match(/<style[^>]*>([\s\S]*?)<\/style>/g)||[]).join("\n");
+ const o=(css.match(/\/\*/g)||[]).length,c=(css.match(/\*\//g)||[]).length;
+ if(o!==c){n++;console.log((c-o>0?"짝없는 */ "+(c-o):"안닫힌 /* "+(o-c)), path.relative(root,f))}}
+console.log("불균형 파일", n);
+' "$ASIS"
+
+
+
+
+
