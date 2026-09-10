@@ -11,5 +11,4 @@ Each directory holds one `<name>.7z` (7z AES-256, encrypted headers; same passwo
 a `sha256.txt` and a README. Verify with `sha256.txt`, extract with `7z x -p`, then read the README inside the extracted folder.
 Newest last.
 
-- [vue3-draft-kit-20260910-6/](./vue3-draft-kit-20260910-6/) — `vue3-draft-kit-20260910-6.7z`
 - [vue3-draft-kit-20260910-7/](./vue3-draft-kit-20260910-7/) — `vue3-draft-kit-20260910-7.7z`
