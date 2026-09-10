@@ -49,3 +49,34 @@ cat ~/.npmrc 2>/dev/null; echo "--- 위가 사용자 .npmrc"
 npm config get registry
 git log --oneline -1 dev
 git rev-parse --abbrev-ref HEAD
+
+
+
+
+
+
+
+
+
+echo "=== 1) 설치된 파이썬 패키지"
+for py in python3 python /usr/bin/python3 /usr/local/bin/python3; do
+  command -v $py >/dev/null 2>&1 && { echo "-- $py ($($py -V 2>&1))"; $py -m pip list 2>/dev/null | grep -i litellm; }
+done
+command -v pipx >/dev/null && { echo "-- pipx"; pipx list 2>/dev/null | grep -i litellm; }
+command -v conda >/dev/null && { echo "-- conda"; conda list 2>/dev/null | grep -i litellm; }
+
+echo "=== 2) 파일시스템 전수(가상환경 포함)"
+find / -xdev \( -name "litellm" -o -name "litellm-*.dist-info" \) -maxdepth 9 2>/dev/null | head -20
+
+echo "=== 3) 돌고 있는지 · 포트"
+ps aux | grep -i "[l]itellm"
+ss -lntp 2>/dev/null | grep -E ":4000|litellm"
+
+echo "=== 4) 서비스 · 컨테이너"
+systemctl list-units --all 2>/dev/null | grep -i litellm
+command -v docker >/dev/null && { docker ps -a --format '{{.Image}} {{.Names}} {{.Status}}' | grep -i litellm; docker images | grep -i litellm; }
+
+echo "=== 5) 누가 언제 깔았나"
+find / -xdev -name "litellm-*.dist-info" -maxdepth 9 2>/dev/null | while read -r d; do
+  stat -c '%y %U %n' "$d"; cat "$d/INSTALLER" 2>/dev/null; done
+grep -rn "litellm" ~/.bash_history /root/.bash_history 2>/dev/null | tail -5
