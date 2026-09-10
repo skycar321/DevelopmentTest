@@ -40,3 +40,25 @@ bash "$KIT/run/00b-resume.sh"
 
 `~/.vue3-draft/` 의 `repair-build.log` · `ai-repair.md` · `draft-facts.md` ·
 `route-sweep.md` · `화면-담당자-배정.md`. 로그인 세션은 보내지 않는다.
+
+
+
+
+
+
+
+
+
+
+
+src/views/Pub/dialogMappingCpntSearch.vue 를 열어라. 15번째 줄에서 빌드가 막힌다:
+  v-model cannot be used on a prop, because local prop bindings are not writable.
+  Use a v-bind binding combined with a v-on listener that emits update:x event instead.
+
+지켜야 할 것:
+1. 이 파일만 고쳐라. 부모 화면과 공통 부품은 건드리지 마라.
+2. 기능을 지워서 빌드를 통과시키지 마라. v-model 삭제, 템플릿 비우기, 오류 부분 주석 처리 전부 금지다.
+3. prop 에 걸린 v-model 을 :model-value 와 @update:model-value 로 바꾸고, 부모에게 알릴 수 있게
+   $emit("update:<prop이름>", ...) 를 붙여라.
+4. 고친 뒤 부모 화면이 v-model:<prop이름> 으로 받아야 하면 그 사실을 마지막에 한 줄로 알려줘라.
+5. 끝나면 npm run build 를 돌려 결과를 보고해라
