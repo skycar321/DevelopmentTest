@@ -71,3 +71,10 @@ console.log(JSON.stringify(d).slice(0,1200));' \
 
 git -C "$DRAFT" log --oneline
 git -C "$DRAFT" show --stat HEAD
+
+
+node -e 'const d=JSON.parse(require("fs").readFileSync(process.argv[1],"utf8"));
+console.log("status:",d.status);
+console.log("details:",JSON.stringify(d.details).slice(0,900));
+console.log("files:",JSON.stringify((d.files||[]).slice(0,6)));' \
+  "$DRAFT/.tmp/draft-project/stages/generic-native-bootstrap/receipt.json"
