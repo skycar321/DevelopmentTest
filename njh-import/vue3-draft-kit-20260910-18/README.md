@@ -43,3 +43,14 @@ AI_REPAIR_MAX=40 bash run/05a-ai-repair.sh   # 고칠 파일이 12개를 넘을 
 
 `~/.vue3-draft/` 의 `repair-build.log` · `ai-repair.md` · `draft-facts.md`,
 그리고 `git -C "$DRAFT" log --oneline` 과 `git -C "$DRAFT" diff --stat`.
+
+
+
+
+
+
+
+node -e 'const r=require("fs").readFileSync(process.argv[1],"utf8");const d=JSON.parse(r);
+console.log("생성됨:",d.bootstrapGenerated);console.log("거부:",JSON.stringify((d.refusals||[]).slice(0,10),null,1));
+console.log("사유:",d.reason||"(없음)");console.log("포매터:",JSON.stringify(d.formatter));' \
+  "$DRAFT/.tmp/draft-project/stages/generic-native-bootstrap/receipt.json"
