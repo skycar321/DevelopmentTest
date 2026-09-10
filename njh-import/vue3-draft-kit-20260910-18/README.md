@@ -50,7 +50,24 @@ AI_REPAIR_MAX=40 bash run/05a-ai-repair.sh   # 고칠 파일이 12개를 넘을 
 
 
 
-node -e 'const r=require("fs").readFileSync(process.argv[1],"utf8");const d=JSON.parse(r);
-console.log("생성됨:",d.bootstrapGenerated);console.log("거부:",JSON.stringify((d.refusals||[]).slice(0,10),null,1));
-console.log("사유:",d.reason||"(없음)");console.log("포매터:",JSON.stringify(d.formatter));' \
+AI_REPAIR_MAX=30 bash run/05a-ai-repair.sh
+
+영수증은 제가 경로를 잘못 알려 드렸습니다
+
+생성됨: undefined / 포매터: undefined 는 그 파일에 제가 말한 필드가 없다는 뜻입니다 — 스테이지 영수증의 껍데기 모양이 제가 가정한 것과 다릅니다. 실제 모양을 보는 명령으로 바꿉니다:
+
+node -e 'const d=JSON.parse(require("fs").readFileSync(process.argv[1],"utf8"));
+console.log("키:",Object.keys(d).join(", "));
+console.log(JSON.stringify(d).slice(0,1200));' \
   "$DRAFT/.tmp/draft-project/stages/generic-native-bootstrap/receipt.json"
+
+★ 인사이트 ─────────────────────────────────────
+거부: [] 와 사유: (없음) 이 빈 배열로 나온 것은 의미가 있습니다. 코드모드가 "이 파일들은 내가 못 하겠다"고 거부한 게 아니라, 아예 후보로 잡지도 않았다는 뜻일 가능성이 큽니다. 거부는 기록이 남지만, 후보에서 빠진 건 아무 기록도 안 남습니다 — 침묵이 가장 나쁜 실패 모드입니다. 위 명령의 출력이 그걸 갈라 줍니다.
+─────────────────────────────────────────────────
+
+급하지 않습니다. 05a 가 끝난 뒤에 찍어 주셔도 됩니다. 지금은 05a 를 끝까지 두시는 게 우선입니다.
+
+끝나면 이것도 같이 보내 주시면 다음 킷 코드모드를 정확히 만들 수 있습니다:
+
+git -C "$DRAFT" log --oneline
+git -C "$DRAFT" show --stat HEAD
