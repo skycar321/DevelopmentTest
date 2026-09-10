@@ -53,3 +53,27 @@ git -C "$V3" push
 
 `~/.vue3-draft/` 의 `draft-facts.md` · `draft-review.md` ·
 `publish-serve.log` · `route-sweep-serve.log`.
+
+
+
+
+
+
+
+
+
+먼저 확인 (1분)
+
+git -C "$V3" ls-files .njh | wc -l
+du -sh "$V3/.njh"
+grep -rlniE 'apikey|api_key|_auth|authToken|Bearer ' "$V3/.njh" 2>/dev/null | head
+
+마지막 명령이 아무것도 안 뱉으면 그냥 지우고 끝내면 됩니다.
+
+정리
+
+git -C "$V3" rm -r --cached .njh .tmp 2>/dev/null
+printf '.njh/\n.tmp/\n' >> "$V3/.gitignore"
+git -C "$V3" add .gitignore
+git -C "$V3" commit -m "chore: 에이전트 작업 부스러기(.njh/.tmp) 추적 제외"
+git -C "$V3" push
