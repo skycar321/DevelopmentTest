@@ -26,3 +26,21 @@ Defects fixed since rev 2:
 - The library decision sheet still listed packages that the manifest no longer ships. It was regenerated from the current manifest.
 
 Contents (high level): the migration skill bundle at the lab integration tip named in `delivery-line.json`, the step scripts, the library decision documents, the dual-runtime procedure, the draft gap-report tool, and reference analysis lists.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+source env.sh
+grep -B1 -A3 "error during build" "$DRAFT/analysis/draft-project/build.stderr" | head -40
+node -e 'const d=JSON.parse(require("fs").readFileSync(process.argv[1],"utf8"));const l=d.screens||[];const by={};for(const s of l)for(const r of(s.refusals||[])){const k=String(r.reason||r.code).slice(0,60);by[k]=(by[k]||0)+1}console.log(Object.entries(by).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([k,v])=>v+"  "+k).join("\n"));console.log("skipped:",l.filter(s=>s.status==="skipped").map(s=>s.file).join(", "))' "$DRAFT/analysis/draft-project/result.json"
