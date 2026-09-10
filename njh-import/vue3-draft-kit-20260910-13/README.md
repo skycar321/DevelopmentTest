@@ -62,3 +62,25 @@ src/views/Pub/dialogMappingCpntSearch.vue 를 열어라. 15번째 줄에서 빌�
    $emit("update:<prop이름>", ...) 를 붙여라.
 4. 고친 뒤 부모 화면이 v-model:<prop이름> 으로 받아야 하면 그 사실을 마지막에 한 줄로 알려줘라.
 5. 끝나면 npm run build 를 돌려 결과를 보고해라
+
+
+
+
+
+
+
+
+
+
+지금 즉시 src/views/Pub/dialogMappingCpntSearch.vue 를 edit 도구로 고쳐라.
+조사·설명·서브에이전트 위임 금지. 이미 분석은 끝났다. 바로 편집만 해라.
+
+reg_org_id 는 prop 이라 v-model 을 걸 수 없다. 부모는 고치지 않는다.
+이 파일 안에서만 다음을 정확히 해라:
+1. data() 에 reg_org_id_local 추가, 초기값 this.reg_org_id
+2. 15행 v-model="reg_org_id" → v-model="reg_org_id_local"
+3. watch 에 reg_org_id 추가 → 새 값을 reg_org_id_local 에 반영
+4. Search() 안에서 this.reg_org_id 를 읽는 곳(143·151행 부근)을 this.reg_org_id_local 로 변경
+5. reg_org_id_local 이 바뀌면 this.$emit("update:reg_org_id", 새값)
+다른 파일 금지. 81행 $emit("input") 은 그대로 둔다.
+편집을 마치면 npm run build 를 돌리고 오류만 보고해라
