@@ -1,0 +1,23 @@
+# Vue 3 draft kit — 2026-09-10 rev 2 (encrypted, lab tip 72d84cf5)
+
+This directory publishes one archive, `vue3-draft-kit-20260910-2.7z`. It supersedes `vue3-draft-kit-20260910`.
+
+- Format: 7z, AES-256, **encrypted headers** (`-mhe=on`). Without the password neither the file list nor the contents can be read.
+- Password: the same archive password as the `njh-cli` kits in this channel. It is delivered separately, never through this repository.
+- Integrity: compare against `sha256.txt` before extracting.
+
+```bash
+shasum -a 256 -c sha256.txt          # or: certutil -hashfile vue3-draft-kit-20260910-2.7z SHA256
+7z x -p vue3-draft-kit-20260910-2.7z # enter the password when prompted
+```
+
+What changed since the previous revision:
+
+- The runbook no longer creates a draft commit tag. The "has a developer edited this screen" test now compares each screen against a recorded hash of the generated draft. The tag version answered correctly only for the first catch-up round: replacing an untouched screen with a newly generated one moves it away from the tagged commit, so from the second round every screen read as hand-edited. The hash record is refreshed at the end of each round, so it stays correct.
+- The runbook now targets the current client kit version published in this channel.
+
+After extraction, start with the Korean README inside the extracted folder. It explains the import order:
+install the matching client kit, regenerate the library decision sheet, prepare the A/B trees, run the one-command draft, compare, and report gaps.
+
+Contents (high level): the migration skill bundle at the lab integration tip named in `delivery-line.json`, the library decision documents,
+the A/B dual-runtime procedure, the draft gap-report tool, and reference analysis lists.
