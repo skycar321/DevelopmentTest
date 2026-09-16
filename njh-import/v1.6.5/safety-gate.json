@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "report": "/Users/nam64/njh-kits/package-pickup-2026-09-16-v1.6.5-865c97de958e/package-build-evidence.md",
+  "package_directory": "/Users/nam64/njh-kits/package-pickup-2026-09-16-v1.6.5-865c97de958e",
+  "version": "1.6.5",
+  "packages": [
+    {
+      "kind": "cli",
+      "status": "pass",
+      "artifact": "njh-cli-v1.6.5.7z",
+      "version": "1.6.5",
+      "expected_sha256": "344501b6aebfeffc1f47cf9071598190ec78a9468794d41ce406f8e404fd5420",
+      "actual_sha256": "344501b6aebfeffc1f47cf9071598190ec78a9468794d41ce406f8e404fd5420",
+      "expected_bytes": 21637172,
+      "actual_bytes": 21637172,
+      "version_markers": {
+        "dist/njh-cli.js": "1.6.5"
+      },
+      "scanned_text_files": 2113,
+      "scanned_text_bytes": 21000669,
+      "scanned_binary_files": 27,
+      "leak_hits": 0
+    },
+    {
+      "kind": "gateway",
+      "status": "pass",
+      "artifact": "njh-gateway-v1.6.5.7z",
+      "version": "1.6.5",
+      "expected_sha256": "52723b2d4e5bc3fef85b179b3e910c742dcbf4240f39d3b5dbda175def84203a",
+      "actual_sha256": "52723b2d4e5bc3fef85b179b3e910c742dcbf4240f39d3b5dbda175def84203a",
+      "expected_bytes": 89301859,
+      "actual_bytes": 89301859,
+      "version_markers": {
+        "runtime/njh-cli.js": "1.6.5",
+        "runtime/njh-gateway.js": "1.6.5"
+      },
+      "scanned_text_files": 180,
+      "scanned_text_bytes": 11394012,
+      "scanned_binary_files": 7,
+      "leak_hits": 0
+    },
+    {
+      "kind": "win-laptop",
+      "status": "pass",
+      "artifact": "njh-win-laptop-v1.6.5.7z",
+      "version": "1.6.5",
+      "expected_sha256": "eb8834a8deb2ce08b72bcce8ca3d7f60174410d4cc7a32f7ef3fadccb193e9aa",
+      "actual_sha256": "eb8834a8deb2ce08b72bcce8ca3d7f60174410d4cc7a32f7ef3fadccb193e9aa",
+      "expected_bytes": 2051472,
+      "actual_bytes": 2051472,
+      "version_markers": {
+        "njh-cli.js": "1.6.5"
+      },
+      "scanned_text_files": 22,
+      "scanned_text_bytes": 3618518,
+      "scanned_binary_files": 0,
+      "leak_hits": 0
+    }
+  ]
+}

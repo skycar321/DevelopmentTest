@@ -1,0 +1,3 @@
+344501b6aebfeffc1f47cf9071598190ec78a9468794d41ce406f8e404fd5420  njh-cli-v1.6.5.7z
+52723b2d4e5bc3fef85b179b3e910c742dcbf4240f39d3b5dbda175def84203a  njh-gateway-v1.6.5.7z
+eb8834a8deb2ce08b72bcce8ca3d7f60174410d4cc7a32f7ef3fadccb193e9aa  njh-win-laptop-v1.6.5.7z
