@@ -41,3 +41,4 @@ Newest last.
 - [vue3-draft-kit-20260916-58/](./vue3-draft-kit-20260916-58/) — `vue3-draft-kit-20260916-58.7z`
 - [vue3-draft-kit-20260916-59/](./vue3-draft-kit-20260916-59/) — `vue3-draft-kit-20260916-59.7z`
 - [vue3-draft-kit-20260917-60/](./vue3-draft-kit-20260917-60/) — `vue3-draft-kit-20260917-60.7z`
+- [vue3-draft-kit-20260917-61/](./vue3-draft-kit-20260917-61/) — `vue3-draft-kit-20260917-61.7z`
