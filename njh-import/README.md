@@ -1,6 +1,6 @@
 # NJH encrypted recipient-delivery channel
 
-Current immutable release: [v1.6.8/](./v1.6.8/)
+Current immutable release: [v1.6.9/](./v1.6.9/)
 
 The version directory and this index are published in one atomic commit.
 Existing version directories are immutable and must never be replaced.
