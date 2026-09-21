@@ -88,3 +88,20 @@ console.log("첫 항목 샘플:", JSON.stringify(sd[0]).slice(0,300));
 console.log("topReasonByScreen 개수:", Object.keys(j.topReasonByScreen||{}).length);
 console.log("reviewFindings 개수:", (j.reviewFindings||[]).length, "| 키:", Object.keys((j.reviewFindings||[])[0]||{}).join(" "));
 '
+
+
+node -e '
+const j=JSON.parse(require("fs").readFileSync(process.env.HOME+"/.vue3-draft/excel-axis.json","utf8"));
+const byFile={};
+(j.reviewFindings||[]).forEach(f=>{(byFile[f.file]=byFile[f.file]||new Set()).add(f.code)});
+const codeScreens={};
+Object.values(byFile).forEach(s=>s.forEach(c=>codeScreens[c]=(codeScreens[c]||0)+1));
+console.log("== [1] 코드별 막고 있는 화면 수 ==");
+Object.entries(codeScreens).sort((a,b)=>b[1]-a[1]).forEach(([c,n])=>console.log(String(n).padStart(3),c));
+console.log("");
+console.log("== [2] 화면별 상태·차단 코드 ==");
+(j.screenDecisions||[]).forEach(d=>console.log(
+  d.file.replace(/^src\//,"").slice(-50).padEnd(50),
+  String(d.status).padEnd(8),
+  [...(byFile[d.file]||[])].join(",").slice(0,72)));
+' | less -S
