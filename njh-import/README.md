@@ -73,3 +73,18 @@ const rows=(j.screenDecisions||[]).map(d=>[d.file.replace(/^src\/views\//,"").sl
   (d.decision||d.verdict),(d.reasons||d.codes||[]).join(",").slice(0,60)]);
 rows.forEach(r=>console.log(r[0].padEnd(46),String(r[1]).padEnd(8),r[2]));
 console.log("총",rows.length,"화면");' | less -S
+
+
+
+
+
+node -e '
+const p=process.env.HOME+"/.vue3-draft/excel-axis.json";
+const j=JSON.parse(require("fs").readFileSync(p,"utf8"));
+console.log("최상위 키:", Object.keys(j).join(" "));
+const sd=j.screenDecisions||[];
+console.log("screenDecisions 개수:", sd.length, "| 첫 항목 키:", Object.keys(sd[0]||{}).join(" "));
+console.log("첫 항목 샘플:", JSON.stringify(sd[0]).slice(0,300));
+console.log("topReasonByScreen 개수:", Object.keys(j.topReasonByScreen||{}).length);
+console.log("reviewFindings 개수:", (j.reviewFindings||[]).length, "| 키:", Object.keys((j.reviewFindings||[])[0]||{}).join(" "));
+'
