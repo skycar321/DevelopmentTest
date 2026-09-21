@@ -66,3 +66,10 @@ Newest last.
 - [vue3-draft-kit-20260920-83/](./vue3-draft-kit-20260920-83/) — `vue3-draft-kit-20260920-83.7z`
 - [vue3-draft-kit-20260920-84/](./vue3-draft-kit-20260920-84/) — `vue3-draft-kit-20260920-84.7z`
 - [vue3-draft-kit-20260921-85/](./vue3-draft-kit-20260921-85/) — `vue3-draft-kit-20260921-85.7z`
+
+node -e '
+const j=JSON.parse(require("fs").readFileSync(process.env.HOME+"/.vue3-draft/excel-axis.json","utf8"));
+const rows=(j.screenDecisions||[]).map(d=>[d.file.replace(/^src\/views\//,"").slice(-46),
+  (d.decision||d.verdict),(d.reasons||d.codes||[]).join(",").slice(0,60)]);
+rows.forEach(r=>console.log(r[0].padEnd(46),String(r[1]).padEnd(8),r[2]));
+console.log("총",rows.length,"화면");' | less -S
