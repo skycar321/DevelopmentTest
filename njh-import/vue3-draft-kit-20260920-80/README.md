@@ -33,3 +33,25 @@ was run on the lab tree before packaging; result **PASS**.
 - Continue from kit 79 using the kit 80 instructions inside the encrypted archive. Regenerate both sweep reports; old reports are not proof of equivalence.
 - Remaining Excel and behavior work is not claimed complete. Use the generated five-page report for operator feedback.
 - Keep photo-report reopening instructions within the display-width contract even when the state directory has a long Unicode path.
+
+
+
+
+
+
+
+# ① 출발 태그가 정상인가 (오진 여부 판별)
+git -C "$V3" rev-parse -q --verify "$BASE_TAG^{commit}" >/dev/null && echo "태그 있음" || echo "태그 없음"
+git -C "$V3" merge-base --is-ancestor "$BASE_TAG" HEAD && echo "조상 맞음" || echo "조상 아님 ← 오진 원인"
+
+# ② 이력에서 .env* 를 건드린 커밋과 파일 이름만
+git -C "$V3" log --oneline --name-only --diff-filter=ACMDR "$BASE_TAG..HEAD" -- '.env*' | head -20
+
+- "조상 아님/태그 없음" → 실제 env 변경이 아니라 기준선 문제입니다. 아래 (A)
+- 커밋·파일이 나온다 → 진짜 env 이력 변경입니다. 아래 (B)
+
+(A) 기준선 문제 — env 는 건드리지 않은 경우
+
+git -C "$V3" fetch --tags origin        # 태그를 못 받아온 경우
+echo "$BASE_TAG"                        # 지금 기준선이 무엇인지 확인
+git -C "$V3" tag --list | tail -10      # 실제 출발 태그 확인
