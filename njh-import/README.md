@@ -5,6 +5,18 @@ Current immutable release: [v1.6.10/](./v1.6.10/)
 The version directory and this index are published in one atomic commit.
 Existing version directories are immutable and must never be replaced.
 
+## Vue 3 developer tools (encrypted)
+
+Standalone bundle for a developer who owns one screen (working-tree pair, per-file change report, shared rules skill).
+Each directory holds one `<name>.7z` (7z AES-256, encrypted headers; same password as the other kits, delivered separately),
+a `sha256.txt` and a README. Verify with `sha256.txt`, extract with `7z x -p`, then read the README inside the extracted folder.
+Newest last.
+
+- [vue3-dev-tools-20260922/](./vue3-dev-tools-20260922/) — `vue3-dev-tools-20260922.7z`
+- [vue3-dev-tools-20260922-3/](./vue3-dev-tools-20260922-3/) — `vue3-dev-tools-20260922-3.7z`
+- [vue3-dev-tools-20260922-4/](./vue3-dev-tools-20260922-4/) — `vue3-dev-tools-20260922-4.7z`
+- [vue3-dev-tools-20260922-5/](./vue3-dev-tools-20260922-5/) — `vue3-dev-tools-20260922-5.7z`
+
 ## Vue 3 draft kits (encrypted)
 
 Each directory holds one `<name>.7z` (7z AES-256, encrypted headers; same password as the njh-cli kits, delivered separately),
@@ -70,15 +82,4 @@ Newest last.
 - [vue3-draft-kit-20260922-87/](./vue3-draft-kit-20260922-87/) — `vue3-draft-kit-20260922-87.7z`
 - [vue3-draft-kit-20260922-88/](./vue3-draft-kit-20260922-88/) — `vue3-draft-kit-20260922-88.7z`
 - [vue3-draft-kit-20260922-89/](./vue3-draft-kit-20260922-89/) — `vue3-draft-kit-20260922-89.7z`
-
-## Vue 3 developer tools (encrypted)
-
-Standalone bundle for a developer who owns one screen (working-tree pair, per-file change report, shared rules skill).
-Each directory holds one `<name>.7z` (7z AES-256, encrypted headers; same password as the other kits, delivered separately),
-a `sha256.txt` and a README. Verify with `sha256.txt`, extract with `7z x -p`, then read the README inside the extracted folder.
-Newest last.
-
-- [vue3-dev-tools-20260922/](./vue3-dev-tools-20260922/) — `vue3-dev-tools-20260922.7z`
-- [vue3-dev-tools-20260922-3/](./vue3-dev-tools-20260922-3/) — `vue3-dev-tools-20260922-3.7z`
-- [vue3-dev-tools-20260922-4/](./vue3-dev-tools-20260922-4/) — `vue3-dev-tools-20260922-4.7z`
-- [vue3-dev-tools-20260922-5/](./vue3-dev-tools-20260922-5/) — `vue3-dev-tools-20260922-5.7z`
+- [vue3-draft-kit-20260922-90/](./vue3-draft-kit-20260922-90/) — `vue3-draft-kit-20260922-90.7z`
