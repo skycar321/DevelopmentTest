@@ -91,3 +91,4 @@ Newest last.
 
 - [vue3-dev-tools-20260922/](./vue3-dev-tools-20260922/) — `vue3-dev-tools-20260922.7z`
 - [vue3-dev-tools-20260922-3/](./vue3-dev-tools-20260922-3/) — `vue3-dev-tools-20260922-3.7z`
+- [vue3-dev-tools-20260922-4/](./vue3-dev-tools-20260922-4/) — `vue3-dev-tools-20260922-4.7z`
