@@ -78,3 +78,21 @@ Newest last.
 - [vue3-draft-kit-20260922-86/](./vue3-draft-kit-20260922-86/) — `vue3-draft-kit-20260922-86.7z`
 - [vue3-draft-kit-20260922-87/](./vue3-draft-kit-20260922-87/) — `vue3-draft-kit-20260922-87.7z`
 - [vue3-draft-kit-20260922-88/](./vue3-draft-kit-20260922-88/) — `vue3-draft-kit-20260922-88.7z`
+
+
+
+
+
+cd /d/@sqms/workspace/azure/ui-web-vue3
+NEW=/d/@sqms/workspace/azure/ui-web-vue3-catchup-20260922-5/src/utils/store/session.js
+git log --oneline -3 -- src/utils/store/session.js     # 사내에서 손댄 이력이 있는지
+diff src/utils/store/session.js "$NEW" | head -80        # 새 판과의 차이 — writeLegacyToken/readLegacyToken 추가 위주면 안전
+차이가 킷 API 추가뿐이면(사내 수정 이력 없음):
+cp "$NEW" src/utils/store/session.js
+npm run build && git add src/utils/store/session.js && git commit -m "fix(session): adopt kit session store API used by merged screens"
+개발 서버를 껐다 켜고 다시 로그인해 보세요. 사내 수정 이력이 있으면 diff 출력을 보내 주시면 합쳐 드립니다.
+
+같은 종류가 더 있는지 한 번에 확인 — 병합된 화면이 참조하는 공통 API 가 실제로 있는지:
+grep -rhoE "useSessionStore\(\)\.[A-Za-z]+|useSessionStore\([a-zA-Z]+\)\.[A-Za-z]+" src/views | sed 's/.*\.//' | sort -u > /tmp/used.txt
+grep -oE "^\s*(function|const) [A-Za-z]+|^\s*[A-Za-z]+," src/utils/store/session.js | sed 's/.*[ ]//;s/,//' | sort -u > /tmp/have.txt
+comm -23 /tmp/used.txt /tmp/have.txt    # 비어 있어야 정상
