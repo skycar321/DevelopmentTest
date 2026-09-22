@@ -67,3 +67,12 @@ Newest last.
 - [vue3-draft-kit-20260920-84/](./vue3-draft-kit-20260920-84/) — `vue3-draft-kit-20260920-84.7z`
 - [vue3-draft-kit-20260921-85/](./vue3-draft-kit-20260921-85/) — `vue3-draft-kit-20260921-85.7z`
 - [vue3-draft-kit-20260922-86/](./vue3-draft-kit-20260922-86/) — `vue3-draft-kit-20260922-86.7z`
+
+## Vue 3 developer tools (encrypted)
+
+Standalone bundle for a developer who owns one screen (working-tree pair, per-file change report, shared rules skill).
+Each directory holds one `<name>.7z` (7z AES-256, encrypted headers; same password as the other kits, delivered separately),
+a `sha256.txt` and a README. Verify with `sha256.txt`, extract with `7z x -p`, then read the README inside the extracted folder.
+Newest last.
+
+- [vue3-dev-tools-20260922/](./vue3-dev-tools-20260922/) — `vue3-dev-tools-20260922.7z`
