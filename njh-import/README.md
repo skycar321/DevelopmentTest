@@ -5,15 +5,6 @@ Current immutable release: [v1.6.10/](./v1.6.10/)
 The version directory and this index are published in one atomic commit.
 Existing version directories are immutable and must never be replaced.
 
-## Vue 3 developer tools (encrypted)
-
-Standalone bundle for a developer who owns one screen (working-tree pair, per-file change report, shared rules skill).
-Each directory holds one `<name>.7z` (7z AES-256, encrypted headers; same password as the other kits, delivered separately),
-a `sha256.txt` and a README. Verify with `sha256.txt`, extract with `7z x -p`, then read the README inside the extracted folder.
-Newest last.
-
-- [vue3-dev-tools-20260922/](./vue3-dev-tools-20260922/) — `vue3-dev-tools-20260922.7z`
-
 ## Vue 3 draft kits (encrypted)
 
 Each directory holds one `<name>.7z` (7z AES-256, encrypted headers; same password as the njh-cli kits, delivered separately),
@@ -90,3 +81,13 @@ findstr /m /l <태그> C:\Windows\System32\drivers\*.sys
 
 # 2) Ndu 가 범인이면 (가장 흔함) — 비활성 후 재부팅
 reg add HKLM\SYSTEM\CurrentControlSet\Services\Ndu /v Start /t REG_DWORD /d 4 /f
+
+## Vue 3 developer tools (encrypted)
+
+Standalone bundle for a developer who owns one screen (working-tree pair, per-file change report, shared rules skill).
+Each directory holds one `<name>.7z` (7z AES-256, encrypted headers; same password as the other kits, delivered separately),
+a `sha256.txt` and a README. Verify with `sha256.txt`, extract with `7z x -p`, then read the README inside the extracted folder.
+Newest last.
+
+- [vue3-dev-tools-20260922/](./vue3-dev-tools-20260922/) — `vue3-dev-tools-20260922.7z`
+- [vue3-dev-tools-20260922-3/](./vue3-dev-tools-20260922-3/) — `vue3-dev-tools-20260922-3.7z`
