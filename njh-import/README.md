@@ -5,6 +5,17 @@ Current immutable release: [v1.6.10/](./v1.6.10/)
 The version directory and this index are published in one atomic commit.
 Existing version directories are immutable and must never be replaced.
 
+## Vue 3 developer tools (encrypted)
+
+Standalone bundle for a developer who owns one screen (working-tree pair, per-file change report, shared rules skill).
+Each directory holds one `<name>.7z` (7z AES-256, encrypted headers; same password as the other kits, delivered separately),
+a `sha256.txt` and a README. Verify with `sha256.txt`, extract with `7z x -p`, then read the README inside the extracted folder.
+Newest last.
+
+- [vue3-dev-tools-20260922/](./vue3-dev-tools-20260922/) — `vue3-dev-tools-20260922.7z`
+- [vue3-dev-tools-20260922-3/](./vue3-dev-tools-20260922-3/) — `vue3-dev-tools-20260922-3.7z`
+- [vue3-dev-tools-20260922-4/](./vue3-dev-tools-20260922-4/) — `vue3-dev-tools-20260922-4.7z`
+
 ## Vue 3 draft kits (encrypted)
 
 Each directory holds one `<name>.7z` (7z AES-256, encrypted headers; same password as the njh-cli kits, delivered separately),
@@ -69,26 +80,4 @@ Newest last.
 - [vue3-draft-kit-20260922-86/](./vue3-draft-kit-20260922-86/) — `vue3-draft-kit-20260922-86.7z`
 - [vue3-draft-kit-20260922-87/](./vue3-draft-kit-20260922-87/) — `vue3-draft-kit-20260922-87.7z`
 - [vue3-draft-kit-20260922-88/](./vue3-draft-kit-20260922-88/) — `vue3-draft-kit-20260922-88.7z`
-
-
-
-
-# 1) 누수 태그 확인 (관리자 PowerShell) — Sysinternals RAMMap 이 있으면 'Nonpaged' 정렬이 더 쉽다
-Get-Counter '\Memory\Pool Nonpaged Bytes'
-poolmon -b        # WDK 가 있으면: Bytes 기준 상위 태그 확인 (예: NDnd → Ndu.sys)
-# 태그 → 드라이버 매핑
-findstr /m /l <태그> C:\Windows\System32\drivers\*.sys
-
-# 2) Ndu 가 범인이면 (가장 흔함) — 비활성 후 재부팅
-reg add HKLM\SYSTEM\CurrentControlSet\Services\Ndu /v Start /t REG_DWORD /d 4 /f
-
-## Vue 3 developer tools (encrypted)
-
-Standalone bundle for a developer who owns one screen (working-tree pair, per-file change report, shared rules skill).
-Each directory holds one `<name>.7z` (7z AES-256, encrypted headers; same password as the other kits, delivered separately),
-a `sha256.txt` and a README. Verify with `sha256.txt`, extract with `7z x -p`, then read the README inside the extracted folder.
-Newest last.
-
-- [vue3-dev-tools-20260922/](./vue3-dev-tools-20260922/) — `vue3-dev-tools-20260922.7z`
-- [vue3-dev-tools-20260922-3/](./vue3-dev-tools-20260922-3/) — `vue3-dev-tools-20260922-3.7z`
-- [vue3-dev-tools-20260922-4/](./vue3-dev-tools-20260922-4/) — `vue3-dev-tools-20260922-4.7z`
+- [vue3-draft-kit-20260922-89/](./vue3-draft-kit-20260922-89/) — `vue3-draft-kit-20260922-89.7z`
